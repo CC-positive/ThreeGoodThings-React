@@ -17,7 +17,7 @@ function TGTInput() {
                   "tgt3":TGT3};
     //console.log(posObj)
     var request = new XMLHttpRequest();
-    request.open('Post', "http://localhost:3000/v1/threetter/posts", true);
+    request.open('Post', "http://18.181.45.23:8080/v1/threetter/posts", true);
     request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     // リクエストをURLに送信
     let json = JSON.stringify(posObj);
