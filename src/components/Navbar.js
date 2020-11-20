@@ -9,12 +9,12 @@ function Navbar() {
     const [imgData, setImgData] = useState(img1);
 
     return (
-        <AppBar position="static" className="Navbar">
+        <AppBar position="static" className="Navbar" span style="color: red;">
             <Grid item xs={2}>
                 <img src={imgData} alt="ローディング中" title="空と海" className="lottery"></img>
             </Grid>
         </AppBar>
-    );
+        );
 }
 
 export default Navbar;
