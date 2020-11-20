@@ -1,13 +1,35 @@
-// import { useState, useEffect } from "react";
+import { useState } from "react";
 import React from "react";
 
-
 function TGTList() {
-    return (
-        <div className="TGTList">
-            <p>ここTgtlist</p>
-        </div>
-    );
+  const [result, setResult] = useState("まだ実行されていないよ");
+  const doAPI = async () => {
+    const url = "http://18.181.45.23:8080/";
+    let res;
+    try {
+      res = await fetch(url, {
+        method: "GET",
+      });
+      res = await res.json();
+    } catch {
+      res = "API実行に失敗しています。";
+    }
+    console.log(res);
+    setResult(res[0]["test"]);
+  };
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          doAPI();
+        }}
+      >
+        test
+      </button>
+      <div>{result}</div>
+    </>
+  );
 }
 
 export default TGTList;
