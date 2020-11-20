@@ -1,10 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from '../logo.svg';
+import '../styles/App.css';
+import Navbar from './Navbar';
+import TGTInput from './TGTInput';
+import TGTList from './TGTList';
+//import { useState, useEffect } from "react";
+import React from "react";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +22,11 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      <h1>Hello World!!</h1>
+      <Navbar />
+      <TGTInput />
+      <TGTList />
     </div>
   );
 }
