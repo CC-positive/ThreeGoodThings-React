@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState
+} from "react";
 import React from "react";
-
+import "../styles/TGTInput.css";
 
 function TGTInput() {
 
@@ -10,8 +11,18 @@ function TGTInput() {
   const [user, setUser] = useState("");
 
   const onButtonClick = () => {
-    console.log(document.forms.form.TGT1.value)
-  };
+    const posObj = {"userName":user,
+                  "tgt1":TGT1,
+                  "tgt2" :TGT2,
+                  "tgt3":TGT3};
+    //console.log(posObj)
+    var request = new XMLHttpRequest();
+    request.open('Post', "http://18.181.45.23:8080/v1/threetter/posts", true);
+    request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    // リクエストをURLに送信
+    let json = JSON.stringify(posObj);
+    request.send(json);
+  }
 
   function handleInputChange1(e) {
     setTGT1(e.target.value)
@@ -33,15 +44,16 @@ function TGTInput() {
         <div className="TGTInput">
           <h2> 今日あった3つの良いことをつぶやきましょう</h2>
           <form  id="form">
-          <span>One Good Thing:</span>
-          <input type="text" id="TGT1" placeholder="キーワードを入力" onChange={handleInputChange1} className="TGTcon"/>
+          <span >First Good Thing:  </span>
+          <input type="text" id="TGT1"  size="40" placeholder="朝ごはんのゆで卵が、いいかんじの半熟" onChange={handleInputChange1} className="TGTcon"/>
           <br/>
-          <span>Second Good Thing:</span>
-          <input type="text" id="TGT2" placeholder="キーワードを入力" onChange={handleInputChange2}className="TGTcon"/>
+          <span>Second Good Thing:  </span>
+          <input type="text" id="TGT2" size="40"　placeholder="朝決めたタスクが全て18時までに完了した" onChange={handleInputChange2} className="TGTcon"/>
           <br/>
-          <span>Third Good Thing:</span>
-          <input type="text" id="TGT3" placeholder="キーワードを入力" onChange={handleInputChange3}className="TGTcon"/>
+          <span>Third Good Thing:  </span>
+          <input type="text" id="TGT3" size="40"　placeholder="桃鉄が発売された" onChange={handleInputChange3}className="TGTcon"/>
           <br/>
+          <span>User:  </span>
           <input type="text" onChange={handleInputChangeUser} id="user" />
           </form>
             <button type="button" value="Upload" onClick={onButtonClick} disabled={TGT1==="" ||TGT2==="" || TGT3==="" ||user===""}>

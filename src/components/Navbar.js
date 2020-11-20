@@ -14,7 +14,7 @@ function Navbar() {
                 <img src={imgData} alt="ローディング中" title="空と海" className="lottery"></img>
             </Grid>
         </AppBar>
-    );
+        );
 }
 
 export default Navbar;
