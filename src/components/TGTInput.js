@@ -45,7 +45,7 @@ function TGTInput() {
           <h2> 今日あった3つの良いことをつぶやきましょう</h2>
           <form  id="form">
           <span >First Good Thing:  </span>
-          <input type="text" id="TGT1"  align="left" size="40" placeholder="朝ごはんのゆで卵が、いいかんじの半熟" onChange={handleInputChange1} className="TGTcon"/>
+          <input type="text" id="TGT1"  size="40" placeholder="朝ごはんのゆで卵が、いいかんじの半熟" onChange={handleInputChange1} className="TGTcon"/>
           <br/>
           <span>Second Good Thing:  </span>
           <input type="text" id="TGT2" size="40"　placeholder="朝決めたタスクが全て18時までに完了した" onChange={handleInputChange2} className="TGTcon"/>
