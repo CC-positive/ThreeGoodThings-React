@@ -10,6 +10,7 @@ function TGTList() {
       res = await fetch(url, {
         method: "GET",
       });
+      res = await res.json();
     } catch {
       res = "API実行に失敗しています。";
     }
