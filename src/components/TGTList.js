@@ -13,8 +13,8 @@ function TGTList() {
     } catch {
       res = "API実行に失敗しています。";
     }
-    console.log(res);
-    setResult(res === []);
+    console.log(res.body);
+    setResult(res.body === []);
   };
 
   return (
