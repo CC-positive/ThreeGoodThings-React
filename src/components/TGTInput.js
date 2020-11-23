@@ -42,14 +42,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TGTInput() {
+function TGTInput(props) {
   const classes = useStyles();
   const [TGT1, setTGT1] = useState("");
   const [TGT2, setTGT2] = useState("");
   const [TGT3, setTGT3] = useState("");
   const [user, setUser] = useState("");
-
-  const [imgSrc, setImgSrs] = useState("");
 
   const onButtonClick = () => {
     const posObj = { userName: user, tgt1: TGT1, tgt2: TGT2, tgt3: TGT3 };
@@ -81,12 +79,10 @@ function TGTInput() {
     <div className="TGTInput">
       <h2> 今日あった3つの良いことをつぶやきましょう</h2>
       <div className="TGTInputCard">
-        <Card className={classes.card} alignItems="center" justify="center">
+        <Card className={classes.card}>
           <CardHeader
             className={classes.header}
-            avatar={
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            }
+            avatar={<Avatar alt="googleUserImg" src={props.imageUrl} />}
           />
           <CardContent color="red">
             <div className={classes.TGT}>
@@ -99,6 +95,7 @@ function TGTInput() {
                     onChange={handleInputChangeUser}
                     id="user"
                     className="TGTcon"
+                    value={props.userName}
                   />
                 </form>
               </div>

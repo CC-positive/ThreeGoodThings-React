@@ -15,17 +15,19 @@ function App() {
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [accessToken, setAccessToken] = useState("");
   const [googleId, setGoogleId] = useState("");
-  const [profileObj, setProfileObj] = useState("");
+  const [userName, setUserName] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
 
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
   const login = (response) => {
-    if (response.accessToken) {
+    if (response.accessToken && response.profileObj) {
       console.log(response);
       setLoginSuccess(true);
       setAccessToken(response.accessToken);
-      setGoogleId(response.googleId);
-      setProfileObj(response.profileObj);
+      setGoogleId(response.profileObj.googleId);
+      setUserName(response.profileObj.name);
+      setImgUrl(response.profileObj.imageUrl);
     }
   };
   const logout = (response) => {
@@ -54,10 +56,7 @@ function App() {
               onLogoutSuccess={logout}
               onFailure={handleLogoutFailure}
             ></GoogleLogout>
-            {accessToken ? <h5>Your Access Token: {accessToken}</h5> : null}
-            {googleId ? <h5>Your googleId: {googleId}</h5> : null}
-            {profileObj ? <h5>Your name: {profileObj.name}</h5> : null}
-            <TGTInput />
+            <TGTInput userName={userName} imgUrl={imgUrl} />
             <TGTList />
           </>
         ) : (
