@@ -26,7 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     width: 500,
-    marginLeft: "32%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    scrollSnapMarginRight: "auto",
     backgroundColor: blue[100],
     marginBottom: 10,
   },
@@ -82,7 +84,7 @@ function TGTInput(props) {
         <Card className={classes.card}>
           <CardHeader
             className={classes.header}
-            avatar={<Avatar alt="googleUserImg" src={props.imageUrl} />}
+            avatar={<Avatar alt="googleUserImg" src={props.imgUrl} />}
           />
           <CardContent color="red">
             <div className={classes.TGT}>
