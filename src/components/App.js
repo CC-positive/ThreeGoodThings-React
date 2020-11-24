@@ -59,13 +59,13 @@ function App() {
     }
   };
 
-  const logout = (response) => {
+  function updateGoogleState(){
     setLoginSuccess(false);
     setIdToken("");
     setGoogleId("");
     setUserName("");
     setImgUrl("");
-  };
+  }
 
   const handleLoginFailure = (response) => {
     alert("Failed to log in");
@@ -76,7 +76,6 @@ function App() {
   };
 
   function updateFlagChange() {
-    console.log("qqqqqq");
     const updateFlag = "ON";
     setUpdateFlag(updateFlag);
   }
@@ -86,18 +85,11 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar loginSuccess={loginSuccess} updateGoogleState={updateGoogleState}/>
 
       <div>
         {loginSuccess ? (
           <>
-            <br />
-            <GoogleLogout
-              clientId={CLIENT_ID}
-              buttonText="Logout"
-              onLogoutSuccess={logout}
-              onFailure={handleLogoutFailure}
-            ></GoogleLogout>
             <TGTInput
               userName={userName}
               imgUrl={imgUrl}

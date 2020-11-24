@@ -163,7 +163,7 @@ function TGTInput(props) {
         color="primary"
         aria-label="add"
         onClick={onButtonClick}
-        disabled={TGT1 === "" || TGT2 === "" || TGT3 === "" || user === ""}
+        disabled={TGT1 === "" || TGT2 === "" || TGT3 === "" }
       >
         投稿
       </Fab>
