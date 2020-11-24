@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
   },
    avatar: {
-  //   backgroundColor: red[500],
   }
 }));
 

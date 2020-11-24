@@ -37,7 +37,6 @@ function TGTList(props) {
         });
         data = await res.json();
         setTGTList(data);
-        console.log(data);
       } catch (e) {
         console.log(e);
         setApiSuccess(false);
