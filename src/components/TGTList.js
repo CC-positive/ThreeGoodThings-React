@@ -29,7 +29,15 @@ function TGTList(props) {
       let res;
       let data;
       try {
-        res = await fetch(url, { method, header });
+        res = await fetch(url, {
+          method: "GET", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "x-auth-token": props.idToken,
+          },
+        });
         data = await res.json();
         setTGTList(data);
       } catch (e) {
