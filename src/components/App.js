@@ -13,7 +13,7 @@ import {
 
 function App() {
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const [accessToken, setAccessToken] = useState("");
+  const [idToken, setIdToken] = useState("");
   const [googleId, setGoogleId] = useState("");
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
@@ -25,7 +25,7 @@ function App() {
     if (response.accessToken && response.profileObj) {
       //console.log(response);
       setLoginSuccess(true);
-      setAccessToken(response.accessToken);
+      setIdToken(response.idToken);
       setGoogleId(response.profileObj.googleId);
       setUserName(response.profileObj.name);
       setImgUrl(response.profileObj.imageUrl);
@@ -35,7 +35,7 @@ function App() {
       const headers = {};
       headers["Accept"] = "application/json";
       headers["Content-Type"] = "application/json";
-      headers["x-auth-token"] = response.accessToken;
+      headers["x-auth-token"] = response.idToken;
       const url = "http://localhost:8080/v1/threetter/login";
       //set body
       const obj = {};
@@ -46,7 +46,11 @@ function App() {
       const body = JSON.stringify(obj);
       const header = JSON.stringify(headers);
       const method = "POST";
-      const res = await fetch(url, { method, header, body });
+      try {
+        const res = await fetch(url, { method, header, body });
+      } catch {
+        console.log("登録に失敗しました。");
+      }
       console.log(res);
     }
   };
