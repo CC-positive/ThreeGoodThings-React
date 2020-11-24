@@ -34,10 +34,6 @@ function App() {
 
       ////login api send
       //set header
-      const headers = {};
-      headers["Accept"] = "application/json";
-      headers["Content-Type"] = "application/json";
-      headers["x-auth-token"] = response.idToken;
       const API_ENDPOINT = config.THREETER_API_ENDPOINT;
       const url = API_ENDPOINT + "v1/threetter/login";
       //set body
