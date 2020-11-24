@@ -62,6 +62,7 @@ function TGTInput(props) {
     request.open("Post", API_ENDPOINT + "v1/threetter/posts", true);
     request.setRequestHeader("Content-type", "application/json; charset=utf-8");
     request.setRequestHeader("x-auth-token", props.idToken);
+    request.setRequestHeader("x-googleid", props.googleId);
     setTGT1("");
     setTGT2("");
     setTGT3("");

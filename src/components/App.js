@@ -48,6 +48,7 @@ function App() {
           headers: {
             "Content-Type": "application/json",
             "x-auth-token": response.idToken,
+            "x-googleid": response.profileObj.googleId,
           },
           redirect: "follow", // manual, *follow, error
           body: JSON.stringify(obj), // 本文のデータ型は "Content-Type" ヘッダーと一致する必要があります
@@ -103,6 +104,7 @@ function App() {
               updateFlagChange={updateFlagChange}
               updatestate={updatestate}
               idToken={idToken}
+              googleId={googleId}
             />
             <TGTList toukouState={toukouState} idToken={idToken} />
           </>
