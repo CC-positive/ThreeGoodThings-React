@@ -93,7 +93,7 @@ function TGTInput(props) {
     <div className="TGTInput">
       <h2> 今日あった3つの良いことをつぶやきましょう</h2>
       <div className="TGTInputCard">
-        <Card className={classes.card} alignItems="center" justify="center">
+        <Card className={classes.card}>
           <CardHeader
             className={classes.header}
             avatar={<Avatar alt="googleUserImg" src={props.imgUrl} />}

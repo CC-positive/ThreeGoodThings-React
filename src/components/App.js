@@ -23,7 +23,8 @@ function App() {
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
   const login = async (response) => {
-    if (response.accessToken && response.profileObj) {
+    console.log(response);
+    if (response.tokenId && response.profileObj) {
       //console.log(response);
       setLoginSuccess(true);
       setIdToken(response.idToken);
@@ -49,16 +50,19 @@ function App() {
       const method = "POST";
       try {
         const res = await fetch(url, { method, header, body });
+        console.log(res);
       } catch {
         console.log("登録に失敗しました。");
       }
-      console.log(res);
     }
   };
 
   const logout = (response) => {
     setLoginSuccess(false);
-    setAccessToken("");
+    setIdToken("");
+    setGoogleId("");
+    setUserName("");
+    setImgUrl("");
   };
 
   const handleLoginFailure = (response) => {
@@ -81,8 +85,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <TGTInput updatestate={updatestate} />
-      <TGTList toukouState={toukouState} />
+
       <div>
         {loginSuccess ? (
           <>
@@ -97,9 +100,10 @@ function App() {
               userName={userName}
               imgUrl={imgUrl}
               updateFlagChange={updateFlagChange}
-              accessToken={accessToken}
+              updatestate={updatestate}
+              idToken={idToken}
             />
-            <TGTList accessToken={accessToken} />
+            <TGTList toukouState={toukouState} />
           </>
         ) : (
           <>
