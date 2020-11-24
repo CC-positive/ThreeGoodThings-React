@@ -4,13 +4,14 @@ import TGT from "./TGT";
 import testData from "../util/testTGTList.json";
 import Grid from "@material-ui/core/Grid";
 
-function TGTList() {
+function TGTList(props) {
   const [tgtList, setTGTList] = useState([]);
   const [apiSuccess, setApiSuccess] = useState(true);
 
   useEffect(() => {
     const loadTGTList = async () => {
-      const url = "http://18.181.45.23:8080/v1/threetter/posts";
+      console.log(props.accessToken);
+      const url = "http://localhost:8080/v1/threetter/posts";
       let res;
       let data;
       try {

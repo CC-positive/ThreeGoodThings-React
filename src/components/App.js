@@ -23,33 +23,34 @@ function App() {
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
   const login = async (response) => {
     if (response.accessToken && response.profileObj) {
-      console.log(response);
+      //console.log(response);
       setLoginSuccess(true);
       setAccessToken(response.accessToken);
       setGoogleId(response.profileObj.googleId);
       setUserName(response.profileObj.name);
       setImgUrl(response.profileObj.imageUrl);
 
-      //login api send
+      ////login api send
+      //set header
       const headers = {};
       headers["Accept"] = "application/json";
       headers["Content-Type"] = "application/json";
-      headers["x-auth-token"] = accessToken;
+      headers["x-auth-token"] = response.accessToken;
       const url = "http://localhost:8080/v1/threetter/login";
+      //set body
       const obj = {};
       obj.googleId = response.profileObj.googleId;
       obj.userName = response.profileObj.name;
       obj.picture = response.profileObj.imageUrl;
+      //create request
       const body = JSON.stringify(obj);
       const header = JSON.stringify(headers);
       const method = "POST";
-      console.log(body);
-      console.log(header);
-      console.log(method);
-      const response = await fetch(url, { method, header, body });
-      console.log(response);
+      const res = await fetch(url, { method, header, body });
+      console.log(res);
     }
   };
+
   const logout = (response) => {
     setLoginSuccess(false);
     setAccessToken("");
@@ -87,7 +88,7 @@ function App() {
               imgUrl={imgUrl}
               updateFlagChange={updateFlagChange}
             />
-            <TGTList />
+            <TGTList accessToken={accessToken} />
           </>
         ) : (
           <>

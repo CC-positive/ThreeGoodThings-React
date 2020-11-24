@@ -57,7 +57,7 @@ function TGTInput(props) {
   const onButtonClick = () => {
     const posObj = { userName: user, tgt1: TGT1, tgt2: TGT2, tgt3: TGT3 };
     var request = new XMLHttpRequest();
-    request.open("Post", "http://18.181.45.23:8080/v1/threetter/posts", true);
+    request.open("Post", "http://localhost:8080/v1/threetter/posts", true);
     request.setRequestHeader("Content-type", "application/json; charset=utf-8");
     setTGT1("");
     setTGT2("");
