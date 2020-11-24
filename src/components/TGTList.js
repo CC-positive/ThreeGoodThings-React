@@ -54,7 +54,7 @@ function TGTList(props) {
           <Grid container spacing={2}>
             {tgtList.map((data, idx) => {
               return (
-                <Grid item xs={6} key={idx + "grid"}>
+                <Grid item xs={4} key={idx + "grid"}>
                   <TGT
                     userName={data.user.name}
                     imgUrl={data.user.picture}
