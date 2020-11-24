@@ -3,6 +3,7 @@ import React from "react";
 import TGT from "./TGT";
 import testData from "../util/testTGTList.json";
 import Grid from "@material-ui/core/Grid";
+import { config } from "../config";
 
 function TGTList() {
   const [tgtList, setTGTList] = useState([]);
@@ -10,7 +11,8 @@ function TGTList() {
 
   useEffect(() => {
     const loadTGTList = async () => {
-      const url = "http://18.181.45.23:8080/v1/threetter/posts";
+      const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+      const url = API_ENDPOINT + "v1/threetter/posts";
       let res;
       let data;
       try {
