@@ -42,11 +42,13 @@ function TGTList(props) {
           <Grid container spacing={2}>
             {tgtList.map((data, idx) => {
               return (
-                <>
-                  <Grid item xs={6}>
-                    <TGT userName={data.user.name} tgt={data.tgts} />
-                  </Grid>
-                </>
+                <Grid item xs={6} key={idx + "grid"}>
+                  <TGT
+                    userName={data.user.name}
+                    tgt={data.tgts}
+                    key={idx + "tgt"}
+                  />
+                </Grid>
               );
             })}
           </Grid>
@@ -55,14 +57,19 @@ function TGTList(props) {
         <>
           <p>APIの実行に失敗しました。</p>
           <p>テスト用データを表示します。</p>
-          {tgtList.map((data, idx) => {
-            return (
-              <>
-                <TGT userName={data.user.name} tgt={data.tgts} />
-                <hr />
-              </>
-            );
-          })}
+          <Grid container spacing={2}>
+            {tgtList.map((data, idx) => {
+              return (
+                <Grid item xs={6} key={idx + "grid"}>
+                  <TGT
+                    userName={data.user.name}
+                    tgt={data.tgts}
+                    key={idx + "tgt"}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
         </>
       )}
     </>

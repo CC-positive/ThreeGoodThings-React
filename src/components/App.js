@@ -10,11 +10,12 @@ import {
   useGoogleLogin,
   useGoogleLogout,
 } from "react-google-login";
+import { config } from "../config";
 
 function App() {
   const [toukouState, setToukouState] = useState(0);
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const [accessToken, setAccessToken] = useState("");
+  const [idToken, setIdToken] = useState("");
   const [googleId, setGoogleId] = useState("");
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
@@ -22,19 +23,47 @@ function App() {
 
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
-  const login = (response) => {
-    if (response.accessToken && response.profileObj) {
-      console.log(response);
+  const login = async (response) => {
+    console.log(response);
+    if (response.tokenId && response.profileObj) {
       setLoginSuccess(true);
-      setAccessToken(response.accessToken);
+      setIdToken(response.idToken);
       setGoogleId(response.profileObj.googleId);
       setUserName(response.profileObj.name);
       setImgUrl(response.profileObj.imageUrl);
+
+      ////login api send
+      //set header
+      const headers = {};
+      headers["Accept"] = "application/json";
+      headers["Content-Type"] = "application/json";
+      headers["x-auth-token"] = response.idToken;
+      const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+      const url = API_ENDPOINT + "v1/threetter/login";
+      //set body
+      const obj = {};
+      obj.googleId = response.profileObj.googleId;
+      obj.userName = response.profileObj.name;
+      obj.picture = response.profileObj.imageUrl;
+      //create request
+      const body = JSON.stringify(obj);
+      const header = JSON.stringify(headers);
+      const method = "POST";
+      try {
+        const res = await fetch(url, { method, header, body });
+        console.log(res);
+      } catch {
+        console.log("登録に失敗しました。");
+      }
     }
   };
+
   const logout = (response) => {
     setLoginSuccess(false);
-    setAccessToken("");
+    setIdToken("");
+    setGoogleId("");
+    setUserName("");
+    setImgUrl("");
   };
 
   const handleLoginFailure = (response) => {
@@ -50,15 +79,14 @@ function App() {
     const updateFlag = "ON";
     setUpdateFlag(updateFlag);
   }
-    function updatestate() {
+  function updatestate() {
     setToukouState(toukouState + 1);
   }
-  
+
   return (
     <div className="App">
       <Navbar />
-      <TGTInput updatestate={updatestate} />
-      <TGTList toukouState={toukouState} />
+
       <div>
         {loginSuccess ? (
           <>
@@ -73,8 +101,10 @@ function App() {
               userName={userName}
               imgUrl={imgUrl}
               updateFlagChange={updateFlagChange}
+              updatestate={updatestate}
+              idToken={idToken}
             />
-            <TGTList />
+            <TGTList toukouState={toukouState} />
           </>
         ) : (
           <>
