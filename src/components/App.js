@@ -45,13 +45,17 @@ function App() {
       obj.googleId = response.profileObj.googleId;
       obj.userName = response.profileObj.name;
       obj.picture = response.profileObj.imageUrl;
-      //create request
-      const body = JSON.stringify(obj);
-      const header = JSON.stringify(headers);
-      const method = "POST";
       try {
-        const res = await fetch(url, { method, header, body });
-        console.log(res);
+        const res = await fetch(url, {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": response.idToken,
+          },
+          redirect: "follow", // manual, *follow, error
+          body: JSON.stringify(obj), // 本文のデータ型は "Content-Type" ヘッダーと一致する必要があります
+        });
       } catch {
         console.log("登録に失敗しました。");
       }
