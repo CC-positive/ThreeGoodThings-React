@@ -6,19 +6,17 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [updateFlag, setUpdateFlag] = useState("OFF");
+  const [toukouState, setToukouState] = useState(0);
 
-  function updateFlagChange() {
-    console.log("qqqqqq");
-    const updateFlag = "ON";
-    setUpdateFlag(updateFlag);
+  function updatestate() {
+    setToukouState(toukouState + 1);
   }
-  console.log("レンダリング");
+
   return (
     <div className="App">
       <Navbar />
-      <TGTInput updateFlagChange={updateFlagChange} />
-      <TGTList />
+      <TGTInput updatestate={updatestate} />
+      <TGTList toukouState={toukouState} />
     </div>
   );
 }
