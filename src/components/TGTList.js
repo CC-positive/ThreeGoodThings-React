@@ -37,6 +37,7 @@ function TGTList(props) {
         });
         data = await res.json();
         setTGTList(data);
+        console.log(data);
       } catch (e) {
         console.log(e);
         setApiSuccess(false);
@@ -57,6 +58,8 @@ function TGTList(props) {
                 <Grid item xs={6} key={idx + "grid"}>
                   <TGT
                     userName={data.user.name}
+                    imgUrl={data.user.picture}
+                    upDate={data.date}
                     tgt={data.tgts}
                     key={idx + "tgt"}
                   />

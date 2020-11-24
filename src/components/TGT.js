@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: "left",
   },
+   avatar: {
+  //   backgroundColor: red[500],
+  }
 }));
 
 function TGT(props) {
@@ -25,7 +28,9 @@ function TGT(props) {
   return (
     <>
       <Card className={classes.root}>
-        <CardHeader title={props.userName} subheader="November 20, 2020" />
+        <CardHeader 
+        avatar={<Avatar alt="googleUserImg" src={props.imgUrl} />}
+        title={props.userName} subheader={props.upDate} />
         <CardContent>
           <List>
             <Divider variant="inset" component="li" />
