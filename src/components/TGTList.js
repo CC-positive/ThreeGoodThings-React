@@ -4,10 +4,16 @@ import TGT from "./TGT";
 import testData from "../util/testTGTList.json";
 import Grid from "@material-ui/core/Grid";
 import { config } from "../config";
+import useInterval from "use-interval";
 
-function TGTList() {
+function TGTList(props) {
   const [tgtList, setTGTList] = useState([]);
   const [apiSuccess, setApiSuccess] = useState(true);
+  const [state, setState] = useState(0);
+
+  useInterval(() => {
+    setState(state + 1);
+  }, 10000);
 
   useEffect(() => {
     const loadTGTList = async () => {
@@ -26,7 +32,7 @@ function TGTList() {
       }
     };
     loadTGTList();
-  }, []);
+  }, [state, props.toukouState]);
 
   return (
     <>
