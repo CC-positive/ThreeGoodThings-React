@@ -70,22 +70,6 @@ function TGTList(props) {
       ) : (
         <>
           <p>APIの実行に失敗しました。</p>
-          <p>テスト用データを表示します。</p>
-          <Grid container spacing={2}>
-            {tgtList.map((data, idx) => {
-              return (
-                <Grid item xs={6} key={idx + "grid"}>
-                  <TGT
-                    userName={data.user.name}
-                    imgUrl={data.user.picture}
-                    upDate={data.date}
-                    tgt={data.tgts}
-                    key={idx + "tgt"}
-                  />
-                </Grid>
-              );
-            })}
-          </Grid>
         </>
       )}
     </>
