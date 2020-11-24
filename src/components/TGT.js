@@ -38,7 +38,7 @@ function TGT(props) {
           className={classes.header}
           avatar={<Avatar alt="googleUserImg" src={props.imgUrl} />}
           title={props.userName}
-          subheader={moment(props.upDate).fromNow()}
+          subheader={moment(Date.parse(props.upDate)).fromNow()}
         />
         <CardContent>
           <List>
