@@ -19,10 +19,17 @@ function TGTList(props) {
     const loadTGTList = async () => {
       const API_ENDPOINT = config.THREETER_API_ENDPOINT;
       const url = API_ENDPOINT + "v1/threetter/posts";
+      const headers = {};
+      headers["Accept"] = "application/json";
+      headers["Content-Type"] = "application/json";
+      headers["x-auth-token"] = props.idToken;
+      const header = JSON.stringify(headers);
+      const method = "GET";
+
       let res;
       let data;
       try {
-        res = await fetch(url, { method: "GET" });
+        res = await fetch(url, { method, header });
         data = await res.json();
         setTGTList(data);
       } catch (e) {

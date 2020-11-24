@@ -104,7 +104,7 @@ function App() {
               updatestate={updatestate}
               idToken={idToken}
             />
-            <TGTList toukouState={toukouState} />
+            <TGTList toukouState={toukouState} idToken={idToken} />
           </>
         ) : (
           <>
