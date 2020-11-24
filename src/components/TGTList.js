@@ -29,7 +29,7 @@ function TGTList(props) {
       let res;
       let data;
       try {
-        res = await fetch(url, { method, header, body });
+        res = await fetch(url, { method, header });
         data = await res.json();
         setTGTList(data);
       } catch (e) {
