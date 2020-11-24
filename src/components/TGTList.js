@@ -33,7 +33,7 @@ function TGTList() {
           {tgtList.map((data, idx) => {
             return (
               <>
-                <TGT userName={data.user.name} tgt={data.tgts} />
+                <TGT key={idx} userName={data.user.name} tgt={data.tgts} />
                 <hr />
               </>
             );
@@ -46,7 +46,7 @@ function TGTList() {
           {tgtList.map((data, idx) => {
             return (
               <>
-                <TGT userName={data.user.name} tgt={data.tgts} />
+                <TGT key={idx} userName={data.user.name} tgt={data.tgts} />
                 <hr />
               </>
             );
