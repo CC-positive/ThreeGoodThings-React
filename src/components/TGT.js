@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
+import moment from "moment"
+import 'moment/locale/ja'
 import {
   List,
   ListItem,
@@ -18,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: "left",
   },
+   avatar: {
+  }
 }));
 
 function TGT(props) {
@@ -25,7 +29,9 @@ function TGT(props) {
   return (
     <>
       <Card className={classes.root}>
-        <CardHeader title={props.userName} subheader="November 20, 2020" />
+        <CardHeader 
+        avatar={<Avatar alt="googleUserImg" src={props.imgUrl} />}
+        title={props.userName} subheader={moment(props.upDate).fromNow()} />
         <CardContent>
           <List>
             <Divider variant="inset" component="li" />
