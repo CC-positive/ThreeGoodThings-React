@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import TGT from "./TGT";
 import testData from "../util/testTGTList.json";
+import Grid from "@material-ui/core/Grid";
 
 function TGTList() {
   const [tgtList, setTGTList] = useState([]);
@@ -30,14 +31,17 @@ function TGTList() {
       <hr />
       {tgtList.length !== 0 && apiSuccess === true ? (
         <>
-          {tgtList.map((data, idx) => {
-            return (
-              <>
-                <TGT userName={data.user.name} tgt={data.tgts} />
-                <hr />
-              </>
-            );
-          })}
+          <Grid container spacing={2}>
+            {tgtList.map((data, idx) => {
+              return (
+                <>
+                  <Grid item xs={6}>
+                    <TGT userName={data.user.name} tgt={data.tgts} />
+                  </Grid>
+                </>
+              );
+            })}
+          </Grid>
         </>
       ) : (
         <>
