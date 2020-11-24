@@ -8,7 +8,7 @@ const Config = () => {
   } else if (process.env.REACT_APP_ENV == "production") {
     return {
       API: {
-        THREETER_API_ENDPOINT: "http://18.181.45.23:8080/",
+        THREETER_API_ENDPOINT: "http://threetter.tk:8080/",
       },
     };
   }
