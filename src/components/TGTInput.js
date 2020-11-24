@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import React from "react";
 import "../styles/TGTInput.css";
 import Fab from "@material-ui/core/Fab";
@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     width: 500,
-    marginLeft: "32%",
+    marginLeft: "auto",
+    marginRight: "auto",
     backgroundColor: blue[100],
     marginBottom: 10,
   },
@@ -48,12 +49,25 @@ function TGTInput(props) {
   const [TGT2, setTGT2] = useState("");
   const [TGT3, setTGT3] = useState("");
   const [user, setUser] = useState("");
+  const inputRef1 = useRef();
+  const inputRef2 = useRef();
+  const inputRef3 = useRef();
+  const inputRef4 = useRef();
 
   const onButtonClick = () => {
     const posObj = { userName: user, tgt1: TGT1, tgt2: TGT2, tgt3: TGT3 };
     var request = new XMLHttpRequest();
     request.open("Post", "http://18.181.45.23:8080/v1/threetter/posts", true);
     request.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    setTGT1("");
+    setTGT2("");
+    setTGT3("");
+    setUser("");
+    inputRef1.current.value = "";
+    inputRef2.current.value = "";
+    inputRef3.current.value = "";
+    inputRef4.current.value = "";
+    props.updateFlagChange();
     // リクエストをURLに送信
     let json = JSON.stringify(posObj);
     request.send(json);
@@ -82,7 +96,11 @@ function TGTInput(props) {
         <Card className={classes.card} alignItems="center" justify="center">
           <CardHeader
             className={classes.header}
-            avatar={<Avatar alt="googleUserImg" src={props.imgUrl} />}
+            avatar={
+              <Avatar aria-label="recipe" className={classes.avatar}>
+                R
+              </Avatar>
+            }
           />
           <CardContent color="red">
             <div className={classes.TGT}>
@@ -91,11 +109,11 @@ function TGTInput(props) {
                   <span>UserName: </span>
                   <input
                     type="text"
+                    ref={inputRef4}
                     placeholder="ゆうた"
                     onChange={handleInputChangeUser}
                     id="user"
                     className="TGTcon"
-                    value={props.userName}
                   />
                 </form>
               </div>
@@ -103,6 +121,7 @@ function TGTInput(props) {
                 <span>First Good Thing: </span>
                 <input
                   type="text"
+                  ref={inputRef1}
                   id="TGT1"
                   size="40"
                   placeholder="朝ごはんのゆで卵が、いいかんじの半熟"
@@ -113,6 +132,7 @@ function TGTInput(props) {
                 <span>Second Good Thing: </span>
                 <input
                   type="text"
+                  ref={inputRef2}
                   id="TGT2"
                   size="40"
                   placeholder="朝決めたタスクが全て18時までに完了した"
@@ -124,6 +144,7 @@ function TGTInput(props) {
                 <span>Third Good Thing: </span>
                 <input
                   type="text"
+                  ref={inputRef3}
                   id="TGT3"
                   size="40"
                   placeholder="桃鉄が発売された"
