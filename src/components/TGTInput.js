@@ -96,11 +96,7 @@ function TGTInput(props) {
         <Card className={classes.card} alignItems="center" justify="center">
           <CardHeader
             className={classes.header}
-            avatar={
-              <Avatar aria-label="recipe" className={classes.avatar}>
-                R
-              </Avatar>
-            }
+            avatar={<Avatar alt="googleUserImg" src={props.imgUrl} />}
           />
           <CardContent color="red">
             <div className={classes.TGT}>
@@ -114,6 +110,7 @@ function TGTInput(props) {
                     onChange={handleInputChangeUser}
                     id="user"
                     className="TGTcon"
+                    value={props.userName}
                   />
                 </form>
               </div>
