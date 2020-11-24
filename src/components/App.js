@@ -57,6 +57,32 @@ function App() {
         console.log("登録に失敗しました。");
       }
     }
+
+      const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+      const url = API_ENDPOINT + "v1/threetter/rewards";
+      const headers = {};
+      const header = JSON.stringify(headers);
+      const method = "GET";
+      let res;
+      let data;
+      try {
+        console.log(response.profileObj.googleId)
+        res = await fetch(url, {
+          method: "GET", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "x-googleid": response.profileObj.googleId,
+            "x-auth-token": response.idToken,
+          },
+        });
+        data = await res.json();
+        console.log("検証",data);
+      } catch (e) {
+        console.log(e);
+        console.log("失敗")
+      }
   };
 
   function updateGoogleState(){
@@ -85,7 +111,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar loginSuccess={loginSuccess} updateGoogleState={updateGoogleState}/>
+      <Navbar loginSuccess={loginSuccess} updateGoogleState={updateGoogleState} googleId={googleId}/>
 
       <div>
         {loginSuccess ? (

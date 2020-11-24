@@ -30,32 +30,36 @@ function Navbar(props) {
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
 
-//   useEffect(() => {
-//     const loadTGTList = async () => {
-//       const API_ENDPOINT = config.THREETER_API_ENDPOINT;
-//       const url = API_ENDPOINT + "v1/threetter/rewards";
-//       const headers = {};
-//       const header = JSON.stringify(headers);
-//       const method = "GET";
-//       let res;
-//       let data;
-//       try {
-//         res = await fetch(url, {
-//           method: "GET", // *GET, POST, PUT, DELETE, etc.
-//           mode: "cors", // no-cors, *cors, same-origin
-//           headers: {
-//             "googleId": props.googleId,
-//           },
-//         });
-//         data = await res.json();
-//         console.log(data);
-//       } catch (e) {
-//         console.log(e);
-//         console.log("失敗")
-//       }
-//     };
-//     loadTGTList();
-//   }, [props.toukouState]);
+  // useEffect(() => {
+  //   const loadTGTList = async () => {
+  //     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+  //     const url = API_ENDPOINT + "v1/threetter/rewards";
+  //     const headers = {};
+  //     const header = JSON.stringify(headers);
+  //     const method = "GET";
+  //     let res;
+  //     let data;
+  //     try {
+  //       console.log(props.googleId)
+  //       res = await fetch(url, {
+  //         method: "GET", // *GET, POST, PUT, DELETE, etc.
+  //         mode: "cors", // no-cors, *cors, same-origin
+  //         headers: {
+  //           Accept: "application/json",
+  //           "Content-Type": "application/json",
+  //           "x-googleid": props.googleId,
+  //           "x-auth-token": props.idToken,
+  //         },
+  //       });
+  //       data = await res.json();
+  //       console.log("検証",data);
+  //     } catch (e) {
+  //       console.log(e);
+  //       console.log("失敗")
+  //     }
+  //   };
+  //   loadTGTList();
+  // }, [props.toukouState]);
 
   const logout = (response) => {
     props.updateGoogleState();
