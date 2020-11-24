@@ -10,6 +10,7 @@ import {
   useGoogleLogin,
   useGoogleLogout,
 } from "react-google-login";
+import { config } from "../config";
 
 function App() {
   const [toukouState, setToukouState] = useState(0);
@@ -25,7 +26,6 @@ function App() {
   const login = async (response) => {
     console.log(response);
     if (response.tokenId && response.profileObj) {
-      //console.log(response);
       setLoginSuccess(true);
       setIdToken(response.idToken);
       setGoogleId(response.profileObj.googleId);
@@ -38,7 +38,8 @@ function App() {
       headers["Accept"] = "application/json";
       headers["Content-Type"] = "application/json";
       headers["x-auth-token"] = response.idToken;
-      const url = "http://localhost:8080/v1/threetter/login";
+      const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+      const url = API_ENDPOINT + "v1/threetter/login";
       //set body
       const obj = {};
       obj.googleId = response.profileObj.googleId;
