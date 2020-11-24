@@ -78,6 +78,8 @@ function TGTList(props) {
                 <Grid item xs={6} key={idx + "grid"}>
                   <TGT
                     userName={data.user.name}
+                    imgUrl={data.user.picture}
+                    upDate={data.date}
                     tgt={data.tgts}
                     key={idx + "tgt"}
                   />
