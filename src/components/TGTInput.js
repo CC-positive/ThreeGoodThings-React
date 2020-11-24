@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     width: 500,
-    marginLeft: "32%",
+    marginLeft: "auto",
+    marginRight: "auto",
     backgroundColor: blue[100],
     marginBottom: 10,
   },
@@ -49,6 +50,9 @@ function TGTInput(props) {
   const [TGT3, setTGT3] = useState("");
   const [user, setUser] = useState("");
   const inputRef1 = useRef();
+  const inputRef2 = useRef();
+  const inputRef3 = useRef();
+  const inputRef4 = useRef();
 
   const onButtonClick = () => {
     const posObj = { userName: user, tgt1: TGT1, tgt2: TGT2, tgt3: TGT3 };
@@ -60,6 +64,9 @@ function TGTInput(props) {
     setTGT3("");
     setUser("");
     inputRef1.current.value = "";
+    inputRef2.current.value = "";
+    inputRef3.current.value = "";
+    inputRef4.current.value = "";
     props.updateFlagChange();
     // リクエストをURLに送信
     let json = JSON.stringify(posObj);
@@ -102,7 +109,7 @@ function TGTInput(props) {
                   <span>UserName: </span>
                   <input
                     type="text"
-                    ref={inputUser}
+                    ref={inputRef4}
                     placeholder="ゆうた"
                     onChange={handleInputChangeUser}
                     id="user"
