@@ -12,6 +12,7 @@ import {
 } from "react-google-login";
 
 function App() {
+  const [toukouState, setToukouState] = useState(0);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [accessToken, setAccessToken] = useState("");
   const [googleId, setGoogleId] = useState("");
@@ -49,11 +50,15 @@ function App() {
     const updateFlag = "ON";
     setUpdateFlag(updateFlag);
   }
-  console.log("レンダリング");
-
+    function updatestate() {
+    setToukouState(toukouState + 1);
+  }
+  
   return (
     <div className="App">
       <Navbar />
+      <TGTInput updatestate={updatestate} />
+      <TGTList toukouState={toukouState} />
       <div>
         {loginSuccess ? (
           <>

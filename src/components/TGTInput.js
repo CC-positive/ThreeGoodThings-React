@@ -67,7 +67,7 @@ function TGTInput(props) {
     inputRef2.current.value = "";
     inputRef3.current.value = "";
     inputRef4.current.value = "";
-    props.updateFlagChange();
+    props.updatestate();
     // リクエストをURLに送信
     let json = JSON.stringify(posObj);
     request.send(json);
