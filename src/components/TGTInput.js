@@ -9,6 +9,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { red } from "@material-ui/core/colors";
 import { blue } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
+import { config } from "../config";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,9 +56,10 @@ function TGTInput(props) {
   const inputRef4 = useRef();
 
   const onButtonClick = () => {
+    const API_ENDPOINT = config.THREETER_API_ENDPOINT;
     const posObj = { userName: user, tgt1: TGT1, tgt2: TGT2, tgt3: TGT3 };
     var request = new XMLHttpRequest();
-    request.open("Post", "http://localhost:8080/v1/threetter/posts", true);
+    request.open("Post", API_ENDPOINT + "v1/threetter/posts", true);
     request.setRequestHeader("Content-type", "application/json; charset=utf-8");
     setTGT1("");
     setTGT2("");
