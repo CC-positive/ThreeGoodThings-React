@@ -1,14 +1,14 @@
 const Config = () => {
-  if (process.env.NODE_ENV == "development") {
+  if (process.env.REACT_APP_ENV == "development") {
     return {
       API: {
         THREETER_API_ENDPOINT: "http://localhost:8080/",
       },
     };
-  } else if (process.env.NODE_ENV == "production") {
+  } else if (process.env.REACT_APP_ENV == "production") {
     return {
       API: {
-        THREETER_API_ENDPOINT: "http://18.181.45.23:8080/",
+        THREETER_API_ENDPOINT: "http://threetter.tk:8080/",
       },
     };
   }
