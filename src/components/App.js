@@ -21,7 +21,7 @@ function App() {
 
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
-  const login = (response) => {
+  const login = async (response) => {
     if (response.accessToken && response.profileObj) {
       console.log(response);
       setLoginSuccess(true);
@@ -29,6 +29,25 @@ function App() {
       setGoogleId(response.profileObj.googleId);
       setUserName(response.profileObj.name);
       setImgUrl(response.profileObj.imageUrl);
+
+      //login api send
+      const headers = {};
+      headers["Accept"] = "application/json";
+      headers["Content-Type"] = "application/json";
+      headers["x-auth-token"] = accessToken;
+      const url = "http://localhost:8080/v1/threetter/login";
+      const obj = {};
+      obj.googleId = response.profileObj.googleId;
+      obj.userName = response.profileObj.name;
+      obj.picture = response.profileObj.imageUrl;
+      const body = JSON.stringify(obj);
+      const header = JSON.stringify(headers);
+      const method = "POST";
+      console.log(body);
+      console.log(header);
+      console.log(method);
+      const response = await fetch(url, { method, header, body });
+      console.log(response);
     }
   };
   const logout = (response) => {
@@ -49,7 +68,6 @@ function App() {
     const updateFlag = "ON";
     setUpdateFlag(updateFlag);
   }
-  console.log("レンダリング");
 
   return (
     <div className="App">
