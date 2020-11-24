@@ -87,6 +87,7 @@ function App() {
               userName={userName}
               imgUrl={imgUrl}
               updateFlagChange={updateFlagChange}
+              accessToken={accessToken}
             />
             <TGTList accessToken={accessToken} />
           </>
