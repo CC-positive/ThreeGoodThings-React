@@ -77,6 +77,7 @@ function TGTInput(props) {
     inputTGT3Ref.current.value = "";
     props.updatestate();
     props.reward();
+    props.setToday(true);
     // リクエストをURLに送信
     let json = JSON.stringify(posObj);
     request.send(json);

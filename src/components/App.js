@@ -67,7 +67,6 @@ function App() {
     let res;
     let data;
     try {
-      console.log(response.profileObj.googleId);
       res = await fetch(url, {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
@@ -81,9 +80,9 @@ function App() {
       data = await res.json();
       setContinuous(data.continuation);
       if (data.today === 0) {
-        setToday(true);
-      } else if (data.today === 1) {
         setToday(false);
+      } else if (data.today === 1) {
+        setToday(true);
       }
     } catch (e) {
       console.log(e);
@@ -120,7 +119,7 @@ function App() {
       />
 
       <div>
-        {loginSuccess && today ? (
+        {loginSuccess && !today ? (
           <>
             <TGTInput
               userName={userName}
@@ -129,6 +128,7 @@ function App() {
               updatestate={updatestate}
               idToken={idToken}
               googleId={googleId}
+              setToday={setToday}
             />
           </>
         ) : (
