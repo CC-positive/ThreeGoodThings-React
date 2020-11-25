@@ -52,29 +52,31 @@ function TGTList(props) {
       <hr />
       {tgtList.length !== 0 && apiSuccess === true ? (
         <>
-          <Grid container spacing={2}>
-            {tgtList.map((data, idx) => {
-              return (
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={6}
-                  lg={4}
-                  xl={3}
-                  key={idx + "grid"}
-                >
-                  <TGT
-                    userName={data.user.name}
-                    imgUrl={data.user.picture}
-                    upDate={data.date}
-                    tgt={data.tgts}
-                    key={idx + "tgt"}
-                  />
-                </Grid>
-              );
-            })}
-          </Grid>
+          <div style={{ padding: 10 }}>
+            <Grid container spacing={2}>
+              {tgtList.map((data, idx) => {
+                return (
+                  <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={6}
+                    lg={4}
+                    xl={3}
+                    key={idx + "grid"}
+                  >
+                    <TGT
+                      userName={data.user.name}
+                      imgUrl={data.user.picture}
+                      upDate={data.date}
+                      tgt={data.tgts}
+                      key={idx + "tgt"}
+                    />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </div>
         </>
       ) : (
         <>
