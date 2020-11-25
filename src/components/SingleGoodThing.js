@@ -8,15 +8,12 @@ import {
   ListItem,
   ListItemText,
   ListItemAvatar,
-  Avatar,
-  Divider,
-  Card,
-  CardHeader,
-  CardContent,
+  Typography,
 } from "@material-ui/core";
 import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import { blue } from "@material-ui/core/colors";
 import { config } from "../config";
+import useInterval from "use-interval";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,9 +25,20 @@ const useStyles = makeStyles((theme) => ({
   header: {
     marginBottom: -20,
   },
+  likeCap: {
+    marginBottom: -20,
+    height: 10,
+  },
 }));
 
 function SingleGoodThing(props) {
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
+  const [state, setState] = useState(0);
+  useInterval(() => {
+    setState(state + 1);
+  }, 10000);
+
   useEffect(() => {
     const loadTGTLike = async () => {
       const API_ENDPOINT = config.THREETER_API_ENDPOINT;
@@ -51,21 +59,78 @@ function SingleGoodThing(props) {
           },
         });
         data = await res.json();
-        console.log(props.googleId);
-        console.log(data);
+        setLiked(data.likedByMe);
+        setLikeCount(data.likes);
       } catch (e) {
         console.log(e);
       }
     };
     loadTGTLike();
-  }, []);
+  }, [state]);
+
+  const tgtliked = async () => {
+    const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+    const url = API_ENDPOINT + "v1/threetter/likes";
+    const obj = {};
+    obj.tgtId = props.tgtId;
+
+    let res;
+    let data;
+    try {
+      res = await fetch(url, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "x-auth-token": props.idToken,
+          "x-googleid": props.googleId,
+        },
+        body: JSON.stringify(obj), // 本文のデータ型は "Content-Type" ヘッダーと一致する必要があります
+      });
+      console.log("liked!");
+      setLiked(true);
+      setLikeCount(likeCount + 1);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const classes = useStyles();
   return (
     <>
       <ListItem>
         <ListItemAvatar>
-          <ThumbUpAltRoundedIcon style={{ color: blue[500], fontSize: 35 }} />
+          {liked ? (
+            <div>
+              <ThumbUpAltRoundedIcon
+                style={{ color: blue[500], fontSize: 35 }}
+              />
+              <Typography
+                className="likeCap"
+                variant="caption"
+                display="block"
+                gutterBottom
+              >
+                {likeCount !== 0 ? <>{likeCount}</> : <> </>}
+              </Typography>
+            </div>
+          ) : (
+            <div>
+              <ThumbUpAltRoundedIcon
+                style={{ color: blue[100], fontSize: 35 }}
+                onClick={tgtliked}
+              />
+              <Typography
+                className="likeCap"
+                variant="caption"
+                display="block"
+                gutterBottom
+              >
+                {likeCount !== 0 ? <>{likeCount}</> : <> </>}
+              </Typography>
+            </div>
+          )}
         </ListItemAvatar>
         <ListItemText primary={props.goodThingText} />
       </ListItem>
