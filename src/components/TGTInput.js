@@ -19,6 +19,7 @@ import {
 } from "@material-ui/core";
 import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import SendIcon from "@material-ui/icons/Send";
+import "../styles/TGTInput.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +37,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: blue[500],
   },
   card: {
-    width: 500,
+    ["@media (min-width:480px)"]: {
+      // eslint-disable-line no-useless-computed-key
+      width: "50%",
+    },
+    // width: 500,
     marginLeft: "auto",
     marginRight: "auto",
     // backgroundColor: lightBlue[50],

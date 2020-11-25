@@ -5,6 +5,7 @@ import testData from "../util/testTGTList.json";
 import Grid from "@material-ui/core/Grid";
 import { config } from "../config";
 import useInterval from "use-interval";
+import "../styles/TGTList.css";
 
 function TGTList(props) {
   const [tgtList, setTGTList] = useState([]);
@@ -52,7 +53,7 @@ function TGTList(props) {
       <hr />
       {tgtList.length !== 0 && apiSuccess === true ? (
         <>
-          <div style={{ padding: 10 }}>
+          <div className="grid-outline">
             <Grid container spacing={2}>
               {tgtList.map((data, idx) => {
                 return (
