@@ -78,10 +78,8 @@ function App() {
       });
       data = await res.json();
       setContinuous(data.continuation);
-      console.log(data);
       if (data.today === 0) {
         setToday(true);
-        console.log("OK");
       }
     } catch (e) {
       console.log(e);
