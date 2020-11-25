@@ -81,7 +81,7 @@ function TGTList(props) {
         </>
       ) : (
         <>
-          <p>APIの実行に失敗しました。</p>
+          <p>Now loading...</p>
         </>
       )}
     </>

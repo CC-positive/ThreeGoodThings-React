@@ -36,7 +36,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: blue[500],
   },
   card: {
-    width: 500,
+    ["@media (min-width:480px)"]: {
+      // eslint-disable-line no-useless-computed-key
+      width: "50%",
+    },
+    // width: 500,
     marginLeft: "auto",
     marginRight: "auto",
     // backgroundColor: lightBlue[50],
@@ -74,7 +78,7 @@ function TGTInput(props) {
     inputTGT2Ref.current.value = "";
     inputTGT3Ref.current.value = "";
     props.updatestate();
-    props.reward();
+    props.reward(props.googleId, props.idToken);
     props.setToday(true);
     // リクエストをURLに送信
     let json = JSON.stringify(posObj);
@@ -99,7 +103,7 @@ function TGTInput(props) {
 
   return (
     <div className="TGTInput">
-      <h2> 今日あった3つの良いことをつぶやきましょう</h2>
+      <h2> 今日の3つの良いことを投稿しよう</h2>
       <div className="TGTInputCard">
         <Card className={classes.card} elevation={5}>
           <CardHeader
