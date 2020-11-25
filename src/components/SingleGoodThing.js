@@ -17,7 +17,7 @@ import useInterval from "use-interval";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    textAlign: "left",
+    textAlign: "right",
   },
   avatar: {
     backgroundColor: blue[500],
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
   likeCap: {
     marginBottom: -20,
     height: 10,
+    textAlign: "right",
   },
 }));
 
@@ -35,6 +36,7 @@ function SingleGoodThing(props) {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [state, setState] = useState(0);
+  const classes = useStyles();
   useInterval(() => {
     setState(state + 1);
   }, 10000);
@@ -96,7 +98,6 @@ function SingleGoodThing(props) {
     }
   };
 
-  const classes = useStyles();
   return (
     <>
       <ListItem>
@@ -109,10 +110,12 @@ function SingleGoodThing(props) {
               <Typography
                 className="likeCap"
                 variant="caption"
-                display="block"
-                gutterBottom
+                display="inline"
+                style={
+                  likeCount !== 0 ? { color: blue[500] } : { ccolor: "#ffffff" }
+                }
               >
-                {likeCount !== 0 ? <>{likeCount}</> : <> </>}
+                {likeCount}
               </Typography>
             </div>
           ) : (
@@ -124,10 +127,12 @@ function SingleGoodThing(props) {
               <Typography
                 className="likeCap"
                 variant="caption"
-                display="block"
-                gutterBottom
+                display="inline"
+                style={
+                  likeCount !== 0 ? { color: blue[500] } : { color: "#ffffff" }
+                }
               >
-                {likeCount !== 0 ? <>{likeCount}</> : <> </>}
+                {likeCount}
               </Typography>
             </div>
           )}
