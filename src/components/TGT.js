@@ -43,11 +43,26 @@ function TGT(props) {
         <CardContent>
           <List>
             <Divider variant="inset" component="li" />
-            <SingleGoodThing goodThingText={props.tgt.text1} />
+            <SingleGoodThing
+              goodThingText={props.tgt.text1}
+              tgtId={props.tgt.id1}
+              tokenId={props.tokenId}
+              googleId={props.googleId}
+            />
             <Divider variant="inset" component="li" />
-            <SingleGoodThing goodThingText={props.tgt.text2} />
+            <SingleGoodThing
+              goodThingText={props.tgt.text2}
+              tgtId={props.tgt.id2}
+              tokenId={props.tokenId}
+              googleId={props.googleId}
+            />
             <Divider variant="inset" component="li" />
-            <SingleGoodThing goodThingText={props.tgt.text3} />
+            <SingleGoodThing
+              goodThingText={props.tgt.text3}
+              tgtId={props.tgt.id3}
+              tokenId={props.tokenId}
+              googleId={props.googleId}
+            />
             <Divider variant="inset" component="li" />
           </List>
         </CardContent>

@@ -136,7 +136,11 @@ function App() {
         )}
 
         {loginSuccess ? (
-          <TGTList toukouState={toukouState} idToken={idToken} />
+          <TGTList
+            toukouState={toukouState}
+            idToken={idToken}
+            googleId={googleId}
+          />
         ) : (
           <>
             <GoogleLogin

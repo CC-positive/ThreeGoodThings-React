@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import { blue } from "@material-ui/core/colors";
+import { config } from "../config";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,35 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SingleGoodThing(props) {
+  useEffect(() => {
+    const loadTGTLike = async () => {
+      const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+      const tgtId = props.tgtId;
+      const url = API_ENDPOINT + "v1/threetter/likes?tgtId=" + tgtId;
+
+      let res;
+      let data;
+      try {
+        res = await fetch(url, {
+          method: "GET", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "x-auth-token": props.idToken,
+            "x-googleid": props.googleId,
+          },
+        });
+        data = await res.json();
+        console.log(props.googleId);
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    loadTGTLike();
+  }, []);
+
   const classes = useStyles();
   return (
     <>
