@@ -14,8 +14,9 @@ function App() {
   const [googleId, setGoogleId] = useState("");
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [continuous, setContinuous] = useState(0);
   const [today, setToday] = useState(false);
+  const [updateFlag, setUpdateFlag] = useState("OFF");
+  const [continuous, setContinuous] = useState(0);
   let gooogleId;
   let idTokenRes;
 
@@ -25,7 +26,7 @@ function App() {
   const login = async (response) => {
     if (response.tokenId && response.profileObj) {
       setLoginSuccess(true);
-      setIdToken(response.idToken);
+      setIdToken(response.tokenId);
       setGoogleId(response.profileObj.googleId);
       setUserName(response.profileObj.name);
       setImgUrl(response.profileObj.imageUrl);
@@ -46,7 +47,7 @@ function App() {
           mode: "cors", // no-cors, *cors, same-origin
           headers: {
             "Content-Type": "application/json",
-            "x-auth-token": response.idToken,
+            "x-auth-token": response.tokenId,
             "x-googleid": response.profileObj.googleId,
           },
           redirect: "follow", // manual, *follow, error
@@ -66,6 +67,7 @@ function App() {
     let res;
     let data;
     try {
+      console.log(response.profileObj.googleId);
       res = await fetch(url, {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
