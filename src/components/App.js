@@ -3,8 +3,8 @@ import Navbar from "./Navbar";
 import TGTInput from "./TGTInput";
 import TGTList from "./TGTList";
 import React from "react";
-import { useState } from "react";
-import { GoogleLogin } from "react-google-login";
+import { useEffect, useState } from "react";
+import { GoogleLogin, useGoogleLogin } from "react-google-login";
 import { config } from "../config";
 
 function App() {
@@ -14,19 +14,22 @@ function App() {
   const [googleId, setGoogleId] = useState("");
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+  const [today, setToday] = useState(false);
+  const [updateFlag, setUpdateFlag] = useState("OFF");
   const [continuous, setContinuous] = useState(0);
+  let gooogleId;
+  let idTokenRes;
 
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
+
   const login = async (response) => {
-    console.log(response);
     if (response.tokenId && response.profileObj) {
       setLoginSuccess(true);
       setIdToken(response.tokenId);
       setGoogleId(response.profileObj.googleId);
       setUserName(response.profileObj.name);
       setImgUrl(response.profileObj.imageUrl);
-
       ////login api send
       //set header
       const API_ENDPOINT = config.THREETER_API_ENDPOINT;
@@ -36,6 +39,8 @@ function App() {
       obj.googleId = response.profileObj.googleId;
       obj.userName = response.profileObj.name;
       obj.picture = response.profileObj.imageUrl;
+      gooogleId = response.profileObj.googleId;
+      idTokenRes = response.idToken;
       try {
         const res = await fetch(url, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -51,32 +56,36 @@ function App() {
       } catch {
         console.log("登録に失敗しました。");
       }
+      await reward();
     }
-
+  };
+  const reward = async () => {
     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
     const url = API_ENDPOINT + "v1/threetter/rewards";
     const headers = {};
     const header = JSON.stringify(headers);
-    const method = "GET";
     let res;
     let data;
     try {
-      console.log(response.profileObj.googleId);
       res = await fetch(url, {
         method: "GET", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "x-googleid": response.profileObj.googleId,
-          "x-auth-token": response.tokenId,
+          "x-googleid": gooogleId,
+          "x-auth-token": idTokenRes,
         },
       });
       data = await res.json();
       setContinuous(data.continuation);
+      if (data.today === 0) {
+        setToday(false);
+      } else if (data.today === 1) {
+        setToday(true);
+      }
     } catch (e) {
       console.log(e);
-      console.log("失敗");
     }
   };
 
@@ -110,20 +119,26 @@ function App() {
       />
 
       <div>
-        {loginSuccess ? (
+        {loginSuccess && !today ? (
           <>
             <TGTInput
               userName={userName}
               imgUrl={imgUrl}
+              reward={reward}
               updatestate={updatestate}
               idToken={idToken}
               googleId={googleId}
+              setToday={setToday}
             />
-            <TGTList toukouState={toukouState} idToken={idToken} />
           </>
         ) : (
+          <div></div>
+        )}
+
+        {loginSuccess ? (
+          <TGTList toukouState={toukouState} idToken={idToken} />
+        ) : (
           <>
-            <br />
             <GoogleLogin
               clientId={CLIENT_ID}
               buttonText="Login"
