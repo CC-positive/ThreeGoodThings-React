@@ -53,7 +53,6 @@ function TGTList(props) {
 
   return (
     <>
-      <hr />
       {tgtList.length !== 0 && apiSuccess === true ? (
         <>
           <div className="grid-outline">
