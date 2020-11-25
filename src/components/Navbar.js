@@ -3,16 +3,57 @@ import React from "react";
 import img1 from "../image/threetter.PNG";
 import AppBar from "@material-ui/core/AppBar";
 import Grid from "@material-ui/core/Grid";
+import { config } from "../config";
+import {
+    GoogleLogin,
+    GoogleLogout,
+    useGoogleLogin,
+    useGoogleLogout,
+  } from "react-google-login";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+    icon: {
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
+    logout: {
+        marginTop: -70,
+        marginLeft: "auto",
+    },
+  }));
 
 
-function Navbar() {
+function Navbar(props) {
   const [imgData, setImgData] = useState(img1);
+  const classes = useStyles();
+  const CLIENT_ID =
+    "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
+
+  const logout = (response) => {
+    props.updateGoogleState();
+  };
+
+  const handleLogoutFailure = (response) => {
+    alert("Failed to log out");
+  };
 
     return (
         <AppBar position="static" className="Navbar">
             <Grid item xs={12}>
                 <img src={imgData} alt="ローディング中" title="空と海" className="lottery"></img>
             </Grid>
+            {props.loginSuccess ? (
+                <Grid item  className={classes.logout}>
+                <Grid>{props.continuous}日連続投稿中</Grid>
+                <GoogleLogout
+                  clientId={CLIENT_ID}
+                  buttonText="Logout"
+                  onLogoutSuccess={logout}
+                  onFailure={handleLogoutFailure}
+                ></GoogleLogout>
+                </Grid>
+            ):(<></>)}
         </AppBar>
         );
 }

@@ -20,6 +20,7 @@ function App() {
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [updateFlag, setUpdateFlag] = useState("OFF");
+  const [continuous,setContinuous] = useState(0)
 
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
@@ -57,15 +58,41 @@ function App() {
         console.log("登録に失敗しました。");
       }
     }
+
+      const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+      const url = API_ENDPOINT + "v1/threetter/rewards";
+      const headers = {};
+      const header = JSON.stringify(headers);
+      const method = "GET";
+      let res;
+      let data;
+      try {
+        console.log(response.profileObj.googleId)
+        res = await fetch(url, {
+          method: "GET", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "x-googleid": response.profileObj.googleId,
+            "x-auth-token": response.idToken,
+          },
+        });
+        data = await res.json();
+        setContinuous(data.continuation);
+      } catch (e) {
+        console.log(e);
+        console.log("失敗")
+      }
   };
 
-  const logout = (response) => {
+  function updateGoogleState(){
     setLoginSuccess(false);
     setIdToken("");
     setGoogleId("");
     setUserName("");
     setImgUrl("");
-  };
+  }
 
   const handleLoginFailure = (response) => {
     alert("Failed to log in");
@@ -76,7 +103,6 @@ function App() {
   };
 
   function updateFlagChange() {
-    console.log("qqqqqq");
     const updateFlag = "ON";
     setUpdateFlag(updateFlag);
   }
@@ -86,18 +112,11 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar loginSuccess={loginSuccess} updateGoogleState={updateGoogleState} googleId={googleId} continuous={continuous}/>
 
       <div>
         {loginSuccess ? (
           <>
-            <br />
-            <GoogleLogout
-              clientId={CLIENT_ID}
-              buttonText="Logout"
-              onLogoutSuccess={logout}
-              onFailure={handleLogoutFailure}
-            ></GoogleLogout>
             <TGTInput
               userName={userName}
               imgUrl={imgUrl}
