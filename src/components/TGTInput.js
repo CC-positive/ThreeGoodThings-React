@@ -142,8 +142,13 @@ function TGTInput(props) {
                     shrink: true,
                   }}
                   helperText={
-                    TGT1.length === 0 ? "未入力です！" : TGT1.length + "文字"
+                    TGT1.length === 0
+                      ? "未入力です！"
+                      : TGT1.length + "文字/20文字"
                   }
+                  inputProps={{
+                    maxLength: 20,
+                  }}
                   inputRef={inputTGT1Ref}
                   onChange={handleInputChange1}
                 />
@@ -165,8 +170,13 @@ function TGTInput(props) {
                     shrink: true,
                   }}
                   helperText={
-                    TGT2.length === 0 ? "未入力です！" : TGT2.length + "文字"
+                    TGT2.length === 0
+                      ? "未入力です！"
+                      : TGT2.length + "文字/20文字"
                   }
+                  inputProps={{
+                    maxLength: 20,
+                  }}
                   inputRef={inputTGT2Ref}
                   onChange={handleInputChange2}
                 />
@@ -188,8 +198,13 @@ function TGTInput(props) {
                     shrink: true,
                   }}
                   helperText={
-                    TGT3.length === 0 ? "未入力です！" : TGT3.length + "文字"
+                    TGT3.length === 0
+                      ? "未入力です！"
+                      : TGT3.length + "文字/20文字"
                   }
+                  inputProps={{
+                    maxLength: 20,
+                  }}
                   inputRef={inputTGT3Ref}
                   onChange={handleInputChange3}
                 />
