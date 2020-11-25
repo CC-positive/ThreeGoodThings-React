@@ -28,13 +28,41 @@ function App() {
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
 
+  const reward = async (xGoogleId, xAuthToken) => {
+    const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+    const url = API_ENDPOINT + "v1/threetter/rewards";
+    let res;
+    let data;
+    try {
+      res = await fetch(url, {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "x-googleid": xGoogleId,
+          "x-auth-token": xAuthToken,
+        },
+      });
+      data = await res.json();
+      setContinuous(data.continuation);
+      if (data.today === 0) {
+        setToday(false);
+      } else if (data.today === 1) {
+        setToday(true);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const login = async (response) => {
     if (response.tokenId && response.profileObj) {
-      setLoginSuccess(true);
       setIdToken(response.tokenId);
       setGoogleId(response.profileObj.googleId);
       setUserName(response.profileObj.name);
       setImgUrl(response.profileObj.imageUrl);
+      setLoginSuccess(true);
       //save cookie
       setCookie("googleId", response.profileObj.googleId);
       setCookie("idToken", response.tokenId);
@@ -64,34 +92,7 @@ function App() {
       } catch {
         console.log("登録に失敗しました。");
       }
-      await reward(response.profileObj.googleId, response.tokenId);
-    }
-  };
-  const reward = async (xGoogleId, xAuthToken) => {
-    const API_ENDPOINT = config.THREETER_API_ENDPOINT;
-    const url = API_ENDPOINT + "v1/threetter/rewards";
-    let res;
-    let data;
-    try {
-      res = await fetch(url, {
-        method: "GET", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "x-googleid": xGoogleId,
-          "x-auth-token": xAuthToken,
-        },
-      });
-      data = await res.json();
-      setContinuous(data.continuation);
-      if (data.today === 0) {
-        setToday(false);
-      } else if (data.today === 1) {
-        setToday(true);
-      }
-    } catch (e) {
-      console.log(e);
+      reward(response.profileObj.googleId, response.tokenId);
     }
   };
 
