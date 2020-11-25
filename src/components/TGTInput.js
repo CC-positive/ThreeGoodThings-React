@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: blue[500],
   },
   card: {
-    ["@media (min-width:780px)"]: {
+    ["@media (min-width:480px)"]: {
       // eslint-disable-line no-useless-computed-key
       width: "50%",
     },
