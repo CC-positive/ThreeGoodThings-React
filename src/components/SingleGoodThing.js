@@ -13,7 +13,6 @@ import {
 import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import { blue } from "@material-ui/core/colors";
 import { config } from "../config";
-import useInterval from "use-interval";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,11 +34,7 @@ const useStyles = makeStyles((theme) => ({
 function SingleGoodThing(props) {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
-  const [state, setState] = useState(0);
   const classes = useStyles();
-  useInterval(() => {
-    setState(state + 1);
-  }, 10000);
 
   useEffect(() => {
     const loadTGTLike = async () => {
@@ -68,7 +63,7 @@ function SingleGoodThing(props) {
       }
     };
     loadTGTLike();
-  }, [state]);
+  }, []);
 
   const tgtliked = async () => {
     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
