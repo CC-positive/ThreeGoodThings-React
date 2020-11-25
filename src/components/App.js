@@ -14,7 +14,6 @@ function App() {
   const [googleId, setGoogleId] = useState("");
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [updateFlag, setUpdateFlag] = useState("OFF");
   const [continuous, setContinuous] = useState(0);
 
   const CLIENT_ID =
@@ -97,10 +96,6 @@ function App() {
     alert("Failed to log out");
   };
 
-  function updateFlagChange() {
-    const updateFlag = "ON";
-    setUpdateFlag(updateFlag);
-  }
   function updatestate() {
     setToukouState(toukouState + 1);
   }
@@ -120,7 +115,6 @@ function App() {
             <TGTInput
               userName={userName}
               imgUrl={imgUrl}
-              updateFlagChange={updateFlagChange}
               updatestate={updatestate}
               idToken={idToken}
               googleId={googleId}
