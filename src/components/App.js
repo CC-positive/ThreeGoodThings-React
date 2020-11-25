@@ -165,7 +165,7 @@ function App() {
           <div></div>
         )}
 
-        {loginSuccess ? (
+        {loginSuccess && idToken ? (
           <TGTList
             toukouState={toukouState}
             idToken={idToken}
