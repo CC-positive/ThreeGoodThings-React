@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import { blue } from "@material-ui/core/colors";
+import SingleGoodThing from "./SingleGoodThing";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,32 +44,11 @@ function TGT(props) {
         <CardContent>
           <List>
             <Divider variant="inset" component="li" />
-            <ListItem>
-              <ListItemAvatar>
-                <ThumbUpAltRoundedIcon
-                  style={{ color: blue[500], fontSize: 35 }}
-                />
-              </ListItemAvatar>
-              <ListItemText primary={props.tgt.text1} />
-            </ListItem>
+            <SingleGoodThing goodThingText={props.tgt.text1} />
             <Divider variant="inset" component="li" />
-            <ListItem>
-              <ListItemAvatar>
-                <ThumbUpAltRoundedIcon
-                  style={{ color: blue[500], fontSize: 35 }}
-                />
-              </ListItemAvatar>
-              <ListItemText primary={props.tgt.text2} />
-            </ListItem>
+            <SingleGoodThing goodThingText={props.tgt.text2} />
             <Divider variant="inset" component="li" />
-            <ListItem>
-              <ListItemAvatar>
-                <ThumbUpAltRoundedIcon
-                  style={{ color: blue[500], fontSize: 35 }}
-                />
-              </ListItemAvatar>
-              <ListItemText primary={props.tgt.text3} />
-            </ListItem>
+            <SingleGoodThing goodThingText={props.tgt.text3} />
             <Divider variant="inset" component="li" />
           </List>
         </CardContent>
