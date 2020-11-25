@@ -3,13 +3,8 @@ import Navbar from "./Navbar";
 import TGTInput from "./TGTInput";
 import TGTList from "./TGTList";
 import React from "react";
-import { useEffect, useState } from "react";
-import {
-  GoogleLogin,
-  GoogleLogout,
-  useGoogleLogin,
-  useGoogleLogout,
-} from "react-google-login";
+import { useState } from "react";
+import { GoogleLogin } from "react-google-login";
 import { config } from "../config";
 
 function App() {
@@ -19,7 +14,6 @@ function App() {
   const [googleId, setGoogleId] = useState("");
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [updateFlag, setUpdateFlag] = useState("OFF");
   const [continuous, setContinuous] = useState(0);
 
   const CLIENT_ID =
@@ -102,10 +96,6 @@ function App() {
     alert("Failed to log out");
   };
 
-  function updateFlagChange() {
-    const updateFlag = "ON";
-    setUpdateFlag(updateFlag);
-  }
   function updatestate() {
     setToukouState(toukouState + 1);
   }
@@ -125,7 +115,6 @@ function App() {
             <TGTInput
               userName={userName}
               imgUrl={imgUrl}
-              updateFlagChange={updateFlagChange}
               updatestate={updatestate}
               idToken={idToken}
               googleId={googleId}
