@@ -28,7 +28,7 @@ function TGTList(props) {
       let data;
       try {
         console.log(props);
-        res = await fetch(url, {
+        data = await fetch(url, {
           method: "GET", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, *cors, same-origin
           headers: {
@@ -37,8 +37,10 @@ function TGTList(props) {
             "x-auth-token": props.idToken,
             "x-googleid": props.googleId,
           },
-        });
-        data = await res.json();
+        })
+          .then((res) => res.json())
+          .catch((e) => console.error(e));
+        // data = await res.json();
         setApiSuccess(true);
         setTGTList(data);
       } catch (e) {
