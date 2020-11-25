@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import { GoogleLogout } from "react-google-login";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   icon: {
     marginLeft: "auto",
     marginRight: "auto",
