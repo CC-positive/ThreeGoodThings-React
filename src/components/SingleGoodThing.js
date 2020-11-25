@@ -56,7 +56,7 @@ function SingleGoodThing(props) {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            "x-auth-token": props.idToken,
+            "x-auth-token": props.tokenId,
             "x-googleid": props.googleId,
           },
         });
@@ -85,7 +85,7 @@ function SingleGoodThing(props) {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "x-auth-token": props.idToken,
+          "x-auth-token": props.tokenId,
           "x-googleid": props.googleId,
         },
         body: JSON.stringify(obj), // 本文のデータ型は "Content-Type" ヘッダーと一致する必要があります
