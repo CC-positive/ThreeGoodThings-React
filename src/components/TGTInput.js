@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: blue[500],
   },
   card: {
-    width: 500,
+    // width: 500,
     marginLeft: "auto",
     marginRight: "auto",
     // backgroundColor: lightBlue[50],
