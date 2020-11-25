@@ -103,7 +103,7 @@ function TGTInput(props) {
 
   return (
     <div className="TGTInput">
-      <h2> 今日あった3つの良いことをつぶやきましょう</h2>
+      <h2> 今日の3つの良いことを投稿しよう</h2>
       <div className="TGTInputCard">
         <Card className={classes.card} elevation={5}>
           <CardHeader
