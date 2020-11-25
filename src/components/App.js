@@ -148,7 +148,6 @@ function App() {
         googleId={googleId}
         continuous={continuous}
       />
-
       <div>
         {loginSuccess && !today ? (
           <>
@@ -174,6 +173,8 @@ function App() {
           />
         ) : (
           <>
+            <h3>今日の3つのいいことを投稿してみよう</h3>
+            <br />
             <GoogleLogin
               clientId={CLIENT_ID}
               buttonText="Login"
