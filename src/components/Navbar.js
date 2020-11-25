@@ -1,7 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import { cyan } from "@material-ui/core/colors";
-import img from "../image/img1.png";
+import img from "../image/threetter_logo.png";
 import AppBar from "@material-ui/core/AppBar";
 import Grid from "@material-ui/core/Grid";
 import { GoogleLogout } from "react-google-login";
