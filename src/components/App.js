@@ -14,8 +14,9 @@ function App() {
   const [googleId, setGoogleId] = useState("");
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [continuous, setContinuous] = useState(0);
   const [today, setToday] = useState(false);
+  const [updateFlag, setUpdateFlag] = useState("OFF");
+  const [continuous, setContinuous] = useState(0);
   let gooogleId;
   let idTokenRes;
 
@@ -79,6 +80,8 @@ function App() {
       data = await res.json();
       setContinuous(data.continuation);
       if (data.today === 0) {
+        setToday(false);
+      } else if (data.today === 1) {
         setToday(true);
       } else if (data.today === 1) {
         setToday(false);
@@ -117,7 +120,7 @@ function App() {
         continuous={continuous}
       />
       <div>
-        {loginSuccess && today ? (
+        {loginSuccess && !today ? (
           <>
             <TGTInput
               userName={userName}
@@ -126,6 +129,7 @@ function App() {
               updatestate={updatestate}
               idToken={idToken}
               googleId={googleId}
+              setToday={setToday}
             />
           </>
         ) : (
