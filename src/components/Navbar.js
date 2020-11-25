@@ -1,6 +1,9 @@
 import { useState } from "react";
 import React from "react";
-import img from "../image/threetter.PNG";
+//import img from "../image/threetter.PNG";
+import { lightBlue } from "@material-ui/core/colors";
+import { cyan } from "@material-ui/core/colors";
+import img from "../image/img1.png";
 import AppBar from "@material-ui/core/AppBar";
 import Grid from "@material-ui/core/Grid";
 import { GoogleLogout } from "react-google-login";
@@ -12,8 +15,11 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
   },
   logout: {
-    marginTop: -70,
     marginLeft: "auto",
+  },
+  navber: {
+    backgroundColor: cyan[100],
+    //backgroundColor: grey[200],
   },
 }));
 
@@ -32,13 +38,15 @@ function Navbar(props) {
   };
 
   return (
-    <AppBar position="static" className="Navbar">
+    <AppBar position="static" className={classes.navber}>
       <Grid item xs={12}>
         <img src={imgData} alt="ローディング中" title="threeter"></img>
       </Grid>
       {props.loginSuccess ? (
         <Grid item className={classes.logout}>
-          <Grid>{props.continuous}日連続投稿中</Grid>
+          <Grid>
+            <font color="black">{props.continuous}日連続投稿中</font>
+          </Grid>
           <GoogleLogout
             clientId={CLIENT_ID}
             buttonText="Logout"

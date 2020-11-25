@@ -95,8 +95,6 @@ function App() {
         setToday(false);
       } else if (data.today === 1) {
         setToday(true);
-      } else if (data.today === 1) {
-        setToday(false);
       }
     } catch (e) {
       console.log(e);
@@ -176,6 +174,8 @@ function App() {
           <TGTList toukouState={toukouState} idToken={idToken} />
         ) : (
           <>
+            <h3>今日の3つのいいことを投稿してみよう</h3>
+            <br />
             <GoogleLogin
               clientId={CLIENT_ID}
               buttonText="Login"
