@@ -134,6 +134,7 @@ function App() {
         setUserName(cookieUserName);
         setImgUrl(cookieImgUrl);
         setLoginSuccess(true);
+        reward(cookieGoogleId, cookieIdToken);
       }
     };
     checkLogin();
