@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import moment from "moment";
-import "moment/locale/ja";
 import {
-  List,
   ListItem,
   ListItemText,
   ListItemAvatar,
@@ -13,28 +9,16 @@ import {
 import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import { blue } from "@material-ui/core/colors";
 import { config } from "../config";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: "right",
-  },
-  avatar: {
-    backgroundColor: blue[500],
-  },
-  header: {
-    marginBottom: -20,
-  },
-  likeCap: {
-    marginBottom: -20,
-    height: 10,
-    textAlign: "right",
-  },
-}));
+import useInterval from "use-interval";
 
 function SingleGoodThing(props) {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
-  const classes = useStyles();
+  const [state, setState] = useState(0);
+
+  useInterval(() => {
+    setState(state + 1);
+  }, 5000);
 
   useEffect(() => {
     const loadTGTLike = async () => {
@@ -63,7 +47,7 @@ function SingleGoodThing(props) {
       }
     };
     loadTGTLike();
-  }, []);
+  }, [state]);
 
   const tgtliked = async () => {
     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
@@ -119,7 +103,6 @@ function SingleGoodThing(props) {
                 onClick={tgtliked}
               />
               <Typography
-                className="likeCap"
                 variant="caption"
                 display="inline"
                 style={

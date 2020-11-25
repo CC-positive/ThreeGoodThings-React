@@ -27,7 +27,6 @@ function TGTList(props) {
       let res;
       let data;
       try {
-        console.log(props);
         data = await fetch(url, {
           method: "GET", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, *cors, same-origin

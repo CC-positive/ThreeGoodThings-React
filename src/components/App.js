@@ -4,7 +4,7 @@ import TGTInput from "./TGTInput";
 import TGTList from "./TGTList";
 import React from "react";
 import { useEffect, useState } from "react";
-import { GoogleLogin, useGoogleLogin } from "react-google-login";
+import { GoogleLogin } from "react-google-login";
 import { config } from "../config";
 import { useCookies } from "react-cookie";
 
