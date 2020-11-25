@@ -1,7 +1,6 @@
 import { useState, createRef } from "react";
 import React from "react";
 import "../styles/TGTInput.css";
-import { lightBlue } from "@material-ui/core/colors";
 import { blue } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import { config } from "../config";
@@ -9,7 +8,6 @@ import {
   Fab,
   List,
   ListItem,
-  ListItemText,
   ListItemAvatar,
   Avatar,
   Divider,
