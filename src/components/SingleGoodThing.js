@@ -90,7 +90,6 @@ function SingleGoodThing(props) {
         },
         body: JSON.stringify(obj), // 本文のデータ型は "Content-Type" ヘッダーと一致する必要があります
       });
-      console.log("liked!");
       setLiked(true);
       setLikeCount(likeCount + 1);
     } catch (e) {
