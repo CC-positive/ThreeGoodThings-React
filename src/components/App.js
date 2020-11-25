@@ -20,7 +20,7 @@ function App() {
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [updateFlag, setUpdateFlag] = useState("OFF");
-  const [continuous,setContinuous] = useState(0)
+  const [continuous, setContinuous] = useState(0);
 
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
@@ -28,7 +28,7 @@ function App() {
     console.log(response);
     if (response.tokenId && response.profileObj) {
       setLoginSuccess(true);
-      setIdToken(response.idToken);
+      setIdToken(response.tokenId);
       setGoogleId(response.profileObj.googleId);
       setUserName(response.profileObj.name);
       setImgUrl(response.profileObj.imageUrl);
@@ -48,7 +48,7 @@ function App() {
           mode: "cors", // no-cors, *cors, same-origin
           headers: {
             "Content-Type": "application/json",
-            "x-auth-token": response.idToken,
+            "x-auth-token": response.tokenId,
             "x-googleid": response.profileObj.googleId,
           },
           redirect: "follow", // manual, *follow, error
@@ -59,34 +59,34 @@ function App() {
       }
     }
 
-      const API_ENDPOINT = config.THREETER_API_ENDPOINT;
-      const url = API_ENDPOINT + "v1/threetter/rewards";
-      const headers = {};
-      const header = JSON.stringify(headers);
-      const method = "GET";
-      let res;
-      let data;
-      try {
-        console.log(response.profileObj.googleId)
-        res = await fetch(url, {
-          method: "GET", // *GET, POST, PUT, DELETE, etc.
-          mode: "cors", // no-cors, *cors, same-origin
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "x-googleid": response.profileObj.googleId,
-            "x-auth-token": response.idToken,
-          },
-        });
-        data = await res.json();
-        setContinuous(data.continuation);
-      } catch (e) {
-        console.log(e);
-        console.log("失敗")
-      }
+    const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+    const url = API_ENDPOINT + "v1/threetter/rewards";
+    const headers = {};
+    const header = JSON.stringify(headers);
+    const method = "GET";
+    let res;
+    let data;
+    try {
+      console.log(response.profileObj.googleId);
+      res = await fetch(url, {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "x-googleid": response.profileObj.googleId,
+          "x-auth-token": response.tokenId,
+        },
+      });
+      data = await res.json();
+      setContinuous(data.continuation);
+    } catch (e) {
+      console.log(e);
+      console.log("失敗");
+    }
   };
 
-  function updateGoogleState(){
+  function updateGoogleState() {
     setLoginSuccess(false);
     setIdToken("");
     setGoogleId("");
@@ -112,7 +112,12 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar loginSuccess={loginSuccess} updateGoogleState={updateGoogleState} googleId={googleId} continuous={continuous}/>
+      <Navbar
+        loginSuccess={loginSuccess}
+        updateGoogleState={updateGoogleState}
+        googleId={googleId}
+        continuous={continuous}
+      />
 
       <div>
         {loginSuccess ? (
