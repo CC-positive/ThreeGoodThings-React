@@ -4,16 +4,12 @@ import moment from "moment";
 import "moment/locale/ja";
 import {
   List,
-  ListItem,
-  ListItemText,
-  ListItemAvatar,
   Avatar,
   Divider,
   Card,
   CardHeader,
   CardContent,
 } from "@material-ui/core";
-import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import { blue } from "@material-ui/core/colors";
 import SingleGoodThing from "./SingleGoodThing";
 
