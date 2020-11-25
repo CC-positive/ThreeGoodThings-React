@@ -3,13 +3,8 @@ import Navbar from "./Navbar";
 import TGTInput from "./TGTInput";
 import TGTList from "./TGTList";
 import React from "react";
-import { useEffect, useState } from "react";
-import {
-  GoogleLogin,
-  GoogleLogout,
-  useGoogleLogin,
-  useGoogleLogout,
-} from "react-google-login";
+import { useState } from "react";
+import { GoogleLogin } from "react-google-login";
 import { config } from "../config";
 
 function App() {
@@ -20,7 +15,7 @@ function App() {
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [updateFlag, setUpdateFlag] = useState("OFF");
-  const [continuous,setContinuous] = useState(0)
+  const [continuous, setContinuous] = useState(0);
 
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
@@ -59,34 +54,34 @@ function App() {
       }
     }
 
-      const API_ENDPOINT = config.THREETER_API_ENDPOINT;
-      const url = API_ENDPOINT + "v1/threetter/rewards";
-      const headers = {};
-      const header = JSON.stringify(headers);
-      const method = "GET";
-      let res;
-      let data;
-      try {
-        console.log(response.profileObj.googleId)
-        res = await fetch(url, {
-          method: "GET", // *GET, POST, PUT, DELETE, etc.
-          mode: "cors", // no-cors, *cors, same-origin
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "x-googleid": response.profileObj.googleId,
-            "x-auth-token": response.idToken,
-          },
-        });
-        data = await res.json();
-        setContinuous(data.continuation);
-      } catch (e) {
-        console.log(e);
-        console.log("失敗")
-      }
+    const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+    const url = API_ENDPOINT + "v1/threetter/rewards";
+    const headers = {};
+    const header = JSON.stringify(headers);
+    const method = "GET";
+    let res;
+    let data;
+    try {
+      console.log(response.profileObj.googleId);
+      res = await fetch(url, {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "x-googleid": response.profileObj.googleId,
+          "x-auth-token": response.idToken,
+        },
+      });
+      data = await res.json();
+      setContinuous(data.continuation);
+    } catch (e) {
+      console.log(e);
+      console.log("失敗");
+    }
   };
 
-  function updateGoogleState(){
+  function updateGoogleState() {
     setLoginSuccess(false);
     setIdToken("");
     setGoogleId("");
@@ -112,7 +107,12 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar loginSuccess={loginSuccess} updateGoogleState={updateGoogleState} googleId={googleId} continuous={continuous}/>
+      <Navbar
+        loginSuccess={loginSuccess}
+        updateGoogleState={updateGoogleState}
+        googleId={googleId}
+        continuous={continuous}
+      />
 
       <div>
         {loginSuccess ? (
