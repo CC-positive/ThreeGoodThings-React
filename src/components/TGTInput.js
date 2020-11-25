@@ -135,7 +135,7 @@ function TGTInput(props) {
                   id="TGT1"
                   label="良かったこと一つ目!"
                   style={{ margin: 8 }}
-                  placeholder="朝ごはんのゆで卵が、いいかんじの半熟"
+                  placeholder="朝ごはんのゆで卵がいいかんじ"
                   fullWidth
                   margin="normal"
                   InputLabelProps={{
@@ -181,7 +181,7 @@ function TGTInput(props) {
                   id="TGT3"
                   label="良かったこと三つ目!"
                   style={{ margin: 8 }}
-                  placeholder="朝決めたタスクが全て18時までに完了した"
+                  placeholder="朝決めたタスクが全て終わった"
                   fullWidth
                   margin="normal"
                   InputLabelProps={{
