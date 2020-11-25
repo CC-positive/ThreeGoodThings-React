@@ -5,6 +5,7 @@ import testData from "../util/testTGTList.json";
 import Grid from "@material-ui/core/Grid";
 import { config } from "../config";
 import useInterval from "use-interval";
+import "../styles/TGTList.css";
 
 function TGTList(props) {
   const [tgtList, setTGTList] = useState([]);
@@ -53,31 +54,33 @@ function TGTList(props) {
       <hr />
       {tgtList.length !== 0 && apiSuccess === true ? (
         <>
-          <Grid container spacing={2}>
-            {tgtList.map((data, idx) => {
-              return (
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={6}
-                  lg={4}
-                  xl={3}
-                  key={idx + "grid"}
-                >
-                  <TGT
-                    userName={data.user.name}
-                    imgUrl={data.user.picture}
-                    upDate={data.date}
-                    tgt={data.tgts}
-                    key={idx + "tgt"}
-                    tokenId={props.idToken}
-                    googleId={props.googleId}
-                  />
-                </Grid>
-              );
-            })}
-          </Grid>
+          <div className="grid-outline">
+            <Grid container spacing={2}>
+              {tgtList.map((data, idx) => {
+                return (
+                  <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={6}
+                    lg={4}
+                    xl={3}
+                    key={idx + "grid"}
+                  >
+                    <TGT
+                      userName={data.user.name}
+                      imgUrl={data.user.picture}
+                      upDate={data.date}
+                      tgt={data.tgts}
+                      key={idx + "tgt"}
+                      tokenId={props.idToken}
+                      googleId={props.googleId}
+                    />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </div>
         </>
       ) : (
         <>

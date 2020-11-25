@@ -19,6 +19,7 @@ import {
 } from "@material-ui/core";
 import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import SendIcon from "@material-ui/icons/Send";
+import "../styles/TGTInput.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
