@@ -79,10 +79,7 @@ function App() {
           },
         });
         data = await res.json();
-        console.log("検証",data);
         setContinuous(data.continuation);
-        console.log("検証",data.continuation);
-        console.log("検証",data.today);
       } catch (e) {
         console.log(e);
         console.log("失敗")
