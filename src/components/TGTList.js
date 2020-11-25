@@ -14,7 +14,7 @@ function TGTList(props) {
 
   useInterval(() => {
     setState(state + 1);
-  }, 10000);
+  }, 5000);
 
   useEffect(() => {
     const loadTGTList = async () => {
@@ -68,14 +68,14 @@ function TGTList(props) {
                     md={6}
                     lg={4}
                     xl={3}
-                    key={idx + "grid"}
+                    key={idx + data.id + "grid"}
                   >
                     <TGT
                       userName={data.user.name}
                       imgUrl={data.user.picture}
                       upDate={data.date}
                       tgt={data.tgts}
-                      key={idx + "tgt"}
+                      key={idx + data.id + "tgt"}
                       tokenId={props.idToken}
                       googleId={props.googleId}
                     />
