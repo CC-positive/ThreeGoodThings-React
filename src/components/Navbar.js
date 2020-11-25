@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
       marginRight: "auto",
     },
     logout: {
-        marginTop: -45,
+        marginTop: -70,
         marginLeft: "auto",
     },
   }));
@@ -29,37 +29,6 @@ function Navbar(props) {
   const classes = useStyles();
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
-
-  // useEffect(() => {
-  //   const loadTGTList = async () => {
-  //     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
-  //     const url = API_ENDPOINT + "v1/threetter/rewards";
-  //     const headers = {};
-  //     const header = JSON.stringify(headers);
-  //     const method = "GET";
-  //     let res;
-  //     let data;
-  //     try {
-  //       console.log(props.googleId)
-  //       res = await fetch(url, {
-  //         method: "GET", // *GET, POST, PUT, DELETE, etc.
-  //         mode: "cors", // no-cors, *cors, same-origin
-  //         headers: {
-  //           Accept: "application/json",
-  //           "Content-Type": "application/json",
-  //           "x-googleid": props.googleId,
-  //           "x-auth-token": props.idToken,
-  //         },
-  //       });
-  //       data = await res.json();
-  //       console.log("検証",data);
-  //     } catch (e) {
-  //       console.log(e);
-  //       console.log("失敗")
-  //     }
-  //   };
-  //   loadTGTList();
-  // }, [props.toukouState]);
 
   const logout = (response) => {
     props.updateGoogleState();
@@ -76,6 +45,7 @@ function Navbar(props) {
             </Grid>
             {props.loginSuccess ? (
                 <Grid item  className={classes.logout}>
+                <Grid>{props.continuous}日連続投稿中</Grid>
                 <GoogleLogout
                   clientId={CLIENT_ID}
                   buttonText="Logout"

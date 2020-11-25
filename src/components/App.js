@@ -20,6 +20,7 @@ function App() {
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [updateFlag, setUpdateFlag] = useState("OFF");
+  const [continuous,setContinuous] = useState(0)
 
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
@@ -79,6 +80,9 @@ function App() {
         });
         data = await res.json();
         console.log("検証",data);
+        setContinuous(data.continuation);
+        console.log("検証",data.continuation);
+        console.log("検証",data.today);
       } catch (e) {
         console.log(e);
         console.log("失敗")
@@ -111,7 +115,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar loginSuccess={loginSuccess} updateGoogleState={updateGoogleState} googleId={googleId}/>
+      <Navbar loginSuccess={loginSuccess} updateGoogleState={updateGoogleState} googleId={googleId} continuous={continuous}/>
 
       <div>
         {loginSuccess ? (
