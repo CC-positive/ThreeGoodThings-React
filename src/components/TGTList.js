@@ -34,6 +34,7 @@ function TGTList(props) {
             Accept: "application/json",
             "Content-Type": "application/json",
             "x-auth-token": props.idToken,
+            "x-googleid": props.googleId,
           },
         });
         data = await res.json();
@@ -72,6 +73,8 @@ function TGTList(props) {
                       upDate={data.date}
                       tgt={data.tgts}
                       key={idx + "tgt"}
+                      tokenId={props.idToken}
+                      googleId={props.googleId}
                     />
                   </Grid>
                 );
@@ -81,7 +84,7 @@ function TGTList(props) {
         </>
       ) : (
         <>
-          <p>APIの実行に失敗しました。</p>
+          <p>Now loading...</p>
         </>
       )}
     </>

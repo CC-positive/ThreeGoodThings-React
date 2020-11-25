@@ -24,8 +24,6 @@ function App() {
     "userName",
     "imgUrl",
   ]);
-  let gooogleId;
-  let idTokenRes;
 
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
@@ -51,8 +49,6 @@ function App() {
       obj.googleId = response.profileObj.googleId;
       obj.userName = response.profileObj.name;
       obj.picture = response.profileObj.imageUrl;
-      gooogleId = response.profileObj.googleId;
-      idTokenRes = response.idToken;
       try {
         const res = await fetch(url, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -68,14 +64,12 @@ function App() {
       } catch {
         console.log("登録に失敗しました。");
       }
-      await reward();
+      await reward(response.profileObj.googleId, response.tokenId);
     }
   };
-  const reward = async () => {
+  const reward = async (xGoogleId, xAuthToken) => {
     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
     const url = API_ENDPOINT + "v1/threetter/rewards";
-    const headers = {};
-    const header = JSON.stringify(headers);
     let res;
     let data;
     try {
@@ -85,8 +79,8 @@ function App() {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "x-googleid": gooogleId,
-          "x-auth-token": idTokenRes,
+          "x-googleid": xGoogleId,
+          "x-auth-token": xAuthToken,
         },
       });
       data = await res.json();
@@ -140,6 +134,7 @@ function App() {
         setUserName(cookieUserName);
         setImgUrl(cookieImgUrl);
         setLoginSuccess(true);
+        reward(cookieGoogleId, cookieIdToken);
       }
     };
     checkLogin();
@@ -172,7 +167,11 @@ function App() {
         )}
 
         {loginSuccess ? (
-          <TGTList toukouState={toukouState} idToken={idToken} />
+          <TGTList
+            toukouState={toukouState}
+            idToken={idToken}
+            googleId={googleId}
+          />
         ) : (
           <>
             <GoogleLogin
