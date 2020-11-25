@@ -1,7 +1,5 @@
 import { useState } from "react";
 import React from "react";
-//import img from "../image/threetter.PNG";
-import { lightBlue } from "@material-ui/core/colors";
 import { cyan } from "@material-ui/core/colors";
 import img from "../image/img1.png";
 import AppBar from "@material-ui/core/AppBar";
@@ -19,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
   },
   navber: {
     backgroundColor: cyan[100],
-    //backgroundColor: grey[200],
   },
 }));
 
