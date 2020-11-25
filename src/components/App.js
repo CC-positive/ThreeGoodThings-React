@@ -6,6 +6,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { GoogleLogin, useGoogleLogin } from "react-google-login";
 import { config } from "../config";
+import { useCookies } from "react-cookie";
 
 function App() {
   const [toukouState, setToukouState] = useState(0);
@@ -17,6 +18,12 @@ function App() {
   const [today, setToday] = useState(false);
   const [updateFlag, setUpdateFlag] = useState("OFF");
   const [continuous, setContinuous] = useState(0);
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "idToken",
+    "googleId",
+    "userName",
+    "imgUrl",
+  ]);
   let gooogleId;
   let idTokenRes;
 
@@ -30,6 +37,11 @@ function App() {
       setGoogleId(response.profileObj.googleId);
       setUserName(response.profileObj.name);
       setImgUrl(response.profileObj.imageUrl);
+      //save cookie
+      setCookie("googleId", response.profileObj.googleId);
+      setCookie("idToken", response.tokenId);
+      setCookie("userName", response.profileObj.name);
+      setCookie("imgUrl", response.profileObj.imageUrl);
       ////login api send
       //set header
       const API_ENDPOINT = config.THREETER_API_ENDPOINT;
@@ -97,6 +109,10 @@ function App() {
     setGoogleId("");
     setUserName("");
     setImgUrl("");
+    removeCookie("googleId");
+    removeCookie("idToken");
+    removeCookie("userName");
+    removeCookie("imgUrl");
   }
 
   const handleLoginFailure = (response) => {
@@ -110,6 +126,26 @@ function App() {
   function updatestate() {
     setToukouState(toukouState + 1);
   }
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      const cookieGoogleId = cookies.googleId;
+      const cookieIdToken = cookies.idToken;
+      const cookieUserName = cookies.userName;
+      const cookieImgUrl = cookies.imgUrl;
+      const validatePath = "https://oauth2.googleapis.com/tokeninfo?id_token=";
+      const path = validatePath + cookieIdToken;
+      const authRes = await fetch(path);
+      if (authRes.status === 200) {
+        setGoogleId(cookieGoogleId);
+        setIdToken(cookieIdToken);
+        setUserName(cookieUserName);
+        setImgUrl(cookieImgUrl);
+        setLoginSuccess(true);
+      }
+    };
+    checkLogin();
+  }, []);
 
   return (
     <div className="App">
