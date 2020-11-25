@@ -80,6 +80,8 @@ function App() {
       setContinuous(data.continuation);
       if (data.today === 0) {
         setToday(true);
+      } else if (data.today === 1) {
+        setToday(false);
       }
     } catch (e) {
       console.log(e);
@@ -114,7 +116,6 @@ function App() {
         googleId={googleId}
         continuous={continuous}
       />
-
       <div>
         {loginSuccess && today ? (
           <>
