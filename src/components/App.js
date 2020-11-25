@@ -4,12 +4,7 @@ import TGTInput from "./TGTInput";
 import TGTList from "./TGTList";
 import React from "react";
 import { useEffect, useState } from "react";
-import {
-  GoogleLogin,
-  GoogleLogout,
-  useGoogleLogin,
-  useGoogleLogout,
-} from "react-google-login";
+import { GoogleLogin, useGoogleLogin } from "react-google-login";
 import { config } from "../config";
 
 function App() {
@@ -19,20 +14,21 @@ function App() {
   const [googleId, setGoogleId] = useState("");
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [updateFlag, setUpdateFlag] = useState("OFF");
-  const [continuous,setContinuous] = useState(0)
+  const [continuous, setContinuous] = useState(0);
+  const [today, setToday] = useState(false);
+  let gooogleId;
+  let idTokenRes;
 
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
+
   const login = async (response) => {
-    console.log(response);
     if (response.tokenId && response.profileObj) {
       setLoginSuccess(true);
       setIdToken(response.idToken);
       setGoogleId(response.profileObj.googleId);
       setUserName(response.profileObj.name);
       setImgUrl(response.profileObj.imageUrl);
-
       ////login api send
       //set header
       const API_ENDPOINT = config.THREETER_API_ENDPOINT;
@@ -42,6 +38,8 @@ function App() {
       obj.googleId = response.profileObj.googleId;
       obj.userName = response.profileObj.name;
       obj.picture = response.profileObj.imageUrl;
+      gooogleId = response.profileObj.googleId;
+      idTokenRes = response.idToken;
       try {
         const res = await fetch(url, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -57,36 +55,40 @@ function App() {
       } catch {
         console.log("登録に失敗しました。");
       }
+      await reward();
     }
-
-      const API_ENDPOINT = config.THREETER_API_ENDPOINT;
-      const url = API_ENDPOINT + "v1/threetter/rewards";
-      const headers = {};
-      const header = JSON.stringify(headers);
-      const method = "GET";
-      let res;
-      let data;
-      try {
-        console.log(response.profileObj.googleId)
-        res = await fetch(url, {
-          method: "GET", // *GET, POST, PUT, DELETE, etc.
-          mode: "cors", // no-cors, *cors, same-origin
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "x-googleid": response.profileObj.googleId,
-            "x-auth-token": response.idToken,
-          },
-        });
-        data = await res.json();
-        setContinuous(data.continuation);
-      } catch (e) {
-        console.log(e);
-        console.log("失敗")
+  };
+  const reward = async () => {
+    const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+    const url = API_ENDPOINT + "v1/threetter/rewards";
+    const headers = {};
+    const header = JSON.stringify(headers);
+    let res;
+    let data;
+    try {
+      res = await fetch(url, {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "x-googleid": gooogleId,
+          "x-auth-token": idTokenRes,
+        },
+      });
+      data = await res.json();
+      setContinuous(data.continuation);
+      console.log(data);
+      if (data.today === 0) {
+        setToday(true);
+        console.log("OK");
       }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  function updateGoogleState(){
+  function updateGoogleState() {
     setLoginSuccess(false);
     setIdToken("");
     setGoogleId("");
@@ -102,34 +104,39 @@ function App() {
     alert("Failed to log out");
   };
 
-  function updateFlagChange() {
-    const updateFlag = "ON";
-    setUpdateFlag(updateFlag);
-  }
   function updatestate() {
     setToukouState(toukouState + 1);
   }
 
   return (
     <div className="App">
-      <Navbar loginSuccess={loginSuccess} updateGoogleState={updateGoogleState} googleId={googleId} continuous={continuous}/>
+      <Navbar
+        loginSuccess={loginSuccess}
+        updateGoogleState={updateGoogleState}
+        googleId={googleId}
+        continuous={continuous}
+      />
 
       <div>
-        {loginSuccess ? (
+        {loginSuccess && today ? (
           <>
             <TGTInput
               userName={userName}
               imgUrl={imgUrl}
-              updateFlagChange={updateFlagChange}
+              reward={reward}
               updatestate={updatestate}
               idToken={idToken}
               googleId={googleId}
             />
-            <TGTList toukouState={toukouState} idToken={idToken} />
           </>
         ) : (
+          <div></div>
+        )}
+
+        {loginSuccess ? (
+          <TGTList toukouState={toukouState} idToken={idToken} />
+        ) : (
           <>
-            <br />
             <GoogleLogin
               clientId={CLIENT_ID}
               buttonText="Login"
