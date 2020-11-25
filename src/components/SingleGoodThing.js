@@ -13,7 +13,6 @@ import {
 import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import { blue } from "@material-ui/core/colors";
 import { config } from "../config";
-import useInterval from "use-interval";
 
 const useStyles = makeStyles((theme) => ({
   root: {
