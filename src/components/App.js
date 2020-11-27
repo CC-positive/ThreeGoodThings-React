@@ -3,6 +3,8 @@ import Navbar from "./Navbar";
 import TGTInput from "./TGTInput";
 import TGTList from "./TGTList";
 import React from "react";
+import MyPage from "./MyPage";
+import RecommendList from "./RecommendList";
 import { useEffect, useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { config } from "../config";
@@ -24,6 +26,8 @@ function App() {
     "userName",
     "imgUrl",
   ]);
+  const [recommend, setRecommend] = useState(false);
+  const [currentView, setCurrentView] = useState("home");
 
   const CLIENT_ID =
     "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
@@ -148,9 +152,25 @@ function App() {
         updateGoogleState={updateGoogleState}
         googleId={googleId}
         continuous={continuous}
+        setCurrentView={setCurrentView}
       />
       <div>
-        {loginSuccess && !today ? (
+        {currentView === "myPage" ? (
+          <>
+            <MyPage
+              userName={userName}
+              imgUrl={imgUrl}
+              reward={reward}
+              updatestate={updatestate}
+              idToken={idToken}
+              googleId={googleId}
+              setCurrentView={setCurrentView}
+            />
+          </>
+        ) : (
+          <div></div>
+        )}
+        {loginSuccess && !today && currentView === "home" ? (
           <>
             <TGTInput
               userName={userName}
@@ -166,7 +186,23 @@ function App() {
           <div></div>
         )}
 
-        {loginSuccess ? (
+        {loginSuccess && !recommend && today && currentView === "home" ? (
+          <>
+            <RecommendList
+              userName={userName}
+              imgUrl={imgUrl}
+              reward={reward}
+              updatestate={updatestate}
+              idToken={idToken}
+              googleId={googleId}
+              setRecommend={setRecommend}
+            />
+          </>
+        ) : (
+          <div></div>
+        )}
+
+        {loginSuccess && recommend && currentView === "home" ? (
           <TGTList
             toukouState={toukouState}
             idToken={idToken}
