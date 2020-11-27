@@ -34,6 +34,10 @@ function Navbar(props) {
     alert("Failed to log out");
   };
 
+  const goMyPage = () => {
+    props.setCurrentView("myPage");
+  };
+
   return (
     <AppBar position="static" className={classes.navber}>
       <Grid item xs={12}>
@@ -44,6 +48,9 @@ function Navbar(props) {
           <Grid>
             <font color="black">{props.continuous}日連続投稿中</font>
           </Grid>
+          <button className="myPage-button" onClick={goMyPage}>
+            MyPage
+          </button>
           <GoogleLogout
             clientId={CLIENT_ID}
             buttonText="Logout"
