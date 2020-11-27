@@ -25,8 +25,7 @@ function App() {
     "imgUrl",
   ]);
 
-  const CLIENT_ID =
-    "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
+  const CLIENT_ID = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
   const reward = async (xGoogleId, xAuthToken) => {
     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
