@@ -165,6 +165,7 @@ function App() {
               idToken={idToken}
               googleId={googleId}
               setCurrentView={setCurrentView}
+              continuous={continuous}
             />
           </>
         ) : (

@@ -1,0 +1,53 @@
+.userPhoto {
+  margin-left: auto;
+  margin-right: auto;
+  height: 150px;
+  width: auto;
+}
+
+.userName {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  text-align: top;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.myInfo {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  text-align: top;
+}
+
+.likedBy {
+  position: relative;
+  padding: 0.5em 1em;
+  margin: 2em 4em;
+  font-weight: bold;
+  color: #6091d3;
+  background: #fff;
+  border: solid 3px #6091d3;
+  border-radius: 10px;
+}
+.likedBy p {
+  margin: 0;
+  padding: 0;
+}
+
+.likedBy::before {
+  position: absolute;
+  display: inline-block;
+  box-sizing: border-box;
+  line-height: 1;
+  background: #0059b3;
+  color: #ffffff;
+  content: attr(title);
+  font-weight: bold;
+  padding: 8px 15px;
+  top: -17px;
+  left: 16px;
+  border-radius: 16px;
+  font-size: 16px;
+}
