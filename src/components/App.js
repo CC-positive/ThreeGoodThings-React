@@ -29,7 +29,9 @@ function App() {
   const [recommend, setRecommend] = useState(false);
   const [currentView, setCurrentView] = useState("home");
 
-  const CLIENT_ID = process.env.REACT_APP_OAUTH_CLIENT_ID;
+  const CLIENT_ID =
+    "1046055868678-v0icks04vbpf8i26ur786o0h27vfff48.apps.googleusercontent.com";
+  // const CLIENT_ID = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
   const reward = async (xGoogleId, xAuthToken) => {
     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
