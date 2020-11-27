@@ -1,4 +1,4 @@
-import { useState, createRef } from "react";
+import { useState, createRef, useEffect } from "react";
 import React from "react";
 import "../styles/TGTInput.css";
 import { blue } from "@material-ui/core/colors";
@@ -58,6 +58,38 @@ function TGTInput(props) {
   const inputTGT1Ref = createRef();
   const inputTGT2Ref = createRef();
   const inputTGT3Ref = createRef();
+  const [tmp1, setTmp1] = useState("");
+  const [tmp2, setTmp2] = useState("");
+  const [tmp3, setTmp3] = useState("");
+
+  const getTmp = () => {
+    const tmpList = [];
+    tmpList.push(
+      "いいことあった",
+      "何食べた",
+      "よく寝れた",
+      "名に飲んだ",
+      "昨晩なんのテレビ見た",
+      "音楽聞いた",
+      "どこ行った",
+      "寒い、暖かい"
+    );
+
+    const min = 0;
+    const max = 8;
+
+    const key1 = Math.floor(Math.random() * (max + 1 - min)) + min;
+    const key2 = Math.floor(Math.random() * (max + 1 - min)) + min;
+    const key3 = Math.floor(Math.random() * (max + 1 - min)) + min;
+
+    setTmp1(tmpList[key1]);
+    setTmp2(tmpList[key2]);
+    setTmp3(tmpList[key3]);
+  };
+
+  useEffect(() => {
+    getTmp();
+  }, []);
 
   const onButtonClick = () => {
     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
@@ -135,7 +167,7 @@ function TGTInput(props) {
                   id="TGT1"
                   label="良かったこと一つ目!"
                   style={{ margin: 8 }}
-                  placeholder="朝ごはんのゆで卵がいいかんじ"
+                  placeholder={tmp1}
                   fullWidth
                   margin="normal"
                   InputLabelProps={{
@@ -163,7 +195,7 @@ function TGTInput(props) {
                   id="TGT2"
                   label="良かったこと二つ目!"
                   style={{ margin: 8 }}
-                  placeholder="桃鉄が発売された"
+                  placeholder={tmp2}
                   fullWidth
                   margin="normal"
                   InputLabelProps={{
@@ -191,7 +223,7 @@ function TGTInput(props) {
                   id="TGT3"
                   label="良かったこと三つ目!"
                   style={{ margin: 8 }}
-                  placeholder="朝決めたタスクが全て終わった"
+                  placeholder={tmp3}
                   fullWidth
                   margin="normal"
                   InputLabelProps={{
