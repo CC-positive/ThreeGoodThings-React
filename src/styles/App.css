@@ -1,10 +1,78 @@
 .App {
   text-align: center;
+  height: 100%;
+  margin: 0;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.menu-container {
+  height: auto;
+  margin: 0;
+}
+
+.top-container {
+  height: 100%;
+  margin: 0;
+}
+
+.image-container {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.single-image-container {
+  height: 100%;
+  margin: 0;
+  padding: 1%;
+  width: 30%;
+}
+
+.top-page-comments {
+  padding: 7%;
+}
+
+.center-image-container {
+  position: relative;
+  bottom: 0;
+}
+
+.single-image-container img {
+  border-radius: 5%;
+  object-fit: cover;
+  width: 100%;
+  margin: 10;
+  height: 100%;
+  animation: fadeIn 10s ease 3s 1 normal;
+}
+
+@keyframes fadeIn {
+  /*animetion-nameで設定した値を書く*/
+
+  0% {
+    opacity: 0;
+  } /*アニメーション開始時は不透明度0%*/
+
+  100% {
+    opacity: 1;
+  } /*アニメーション終了時は不透明度100%*/
+}
+
+p {
+  font-family: serif;
+  font-weight: bold;
+  font-size: 24pt;
+  color: rgb(95, 91, 91);
+}
+
+p.sub-comment {
+  font-size: 15pt;
+  /* text-decoration: underline; */
 }
 
 @media (prefers-reduced-motion: no-preference) {

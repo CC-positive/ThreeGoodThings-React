@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import { config } from "../config";
 import { useCookies } from "react-cookie";
+import image1 from "../image/image1.png";
+import image2 from "../image/image2.png";
+import image3 from "../image/image3.png";
 
 function App() {
   const [toukouState, setToukouState] = useState(0);
@@ -155,7 +158,7 @@ function App() {
         continuous={continuous}
         setCurrentView={setCurrentView}
       />
-      <div>
+      <div className="menu-container">
         {currentView === "myPage" ? (
           <>
             <MyPage
@@ -211,18 +214,35 @@ function App() {
             googleId={googleId}
           />
         ) : (
-          <>
-            <h3>今日の3つのいいことを投稿してみよう</h3>
-            <br />
-            <GoogleLogin
-              clientId={CLIENT_ID}
-              buttonText="Login"
-              onSuccess={login}
-              onFailure={handleLoginFailure}
-              cookiePolicy={"single_host_origin"}
-              responseType="code,token"
-            />
-          </>
+          <div className="top-container">
+            <div className="google-login">
+              <GoogleLogin
+                clientId={CLIENT_ID}
+                buttonText="Login"
+                onSuccess={login}
+                onFailure={handleLoginFailure}
+                cookiePolicy={"single_host_origin"}
+                responseType="code,token"
+              />
+            </div>
+            <div className="image-container">
+              <div className="single-image-left-container single-image-container">
+                <img src={image1} alt="pic" className="pic" />
+              </div>
+              <div className="single-image-center-container single-image-container">
+                <div className="top-page-comments">
+                  <p className="main-comment">Three Good Things.</p>
+                  <p className="sub-comment">－ 小さな幸せを、3つだけ。－</p>
+                </div>
+                <div className="center-image-container">
+                  <img src={image2} alt="pic" className="pic" />
+                </div>
+              </div>
+              <div className="single-image-right-container single-image-container">
+                <img src={image3} alt="pic" className="pic" />
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>
