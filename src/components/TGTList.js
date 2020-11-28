@@ -49,6 +49,7 @@ function TGTList(props) {
       }
     };
     loadTGTList();
+    console.log(tgtList);
   }, [state, props.toukouState]);
 
   return (

@@ -65,7 +65,7 @@ function RecommendList(props) {
     } catch (e) {
       console.log(e);
       setApiSuccess(false);
-      setTGTList(testData.testData);
+      setRecommendList(testData.testData);
       console.log("APIエラー");
     }
   };

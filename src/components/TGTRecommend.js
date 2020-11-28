@@ -24,6 +24,7 @@ function TGTRecommend(props) {
     const getRecommend = async () => {
       const API_ENDPOINT = config.THREETER_API_ENDPOINT;
       const tgtId = props.tgtId;
+      console.log(tgtId);
       const url = API_ENDPOINT + "v1/threetter/likes?tgtId=" + tgtId;
 
       let res;
@@ -42,6 +43,7 @@ function TGTRecommend(props) {
         data = await res.json();
         setLiked(data.likedByMe);
         setLikeCount(data.likes);
+        console.log(data);
       } catch (e) {
         console.log(e);
       }
@@ -80,7 +82,6 @@ function TGTRecommend(props) {
 
   return (
     <div>
-      <p>レコメンド画面に遷移成功！！！</p>
       <>
         <ListItem>
           <ListItemAvatar>
