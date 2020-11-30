@@ -52,13 +52,23 @@ function MyTGTShingle(props) {
 
   const handleToggleButtonClick = () => {
     console.log("OK");
-    if (likedUsers.length === 0) {
+    if (likedUsers[0].length === 0) {
       console.log("0");
-      props.updateName(["0"]);
+      props.setName(["Unknown"]);
+      props.setImg([{ pic: "../image/unKnown.png", name: "Unknown" }]);
     } else {
+      console.log(likedUsers[0][0].userName);
       console.log(likedUsers.map((user) => user.userName));
-      props.updateName(likedUsers.map((user) => user.userName));
+      props.setName(likedUsers[0].map((user) => user.userName));
+      props.setImg(
+        likedUsers[0].map((user) => {
+          return { pic: user.picture, name: user.userName };
+        })
+      );
+      console.log(likedUsers[0]);
     }
+
+    props.setCurrentLikeView("singleLike");
   };
 
   return (
@@ -86,14 +96,12 @@ function MyTGTShingle(props) {
               </div>
             </ListItemAvatar>
             <ListItemText primary={props.goodThingText} />
-            <a
-              className="button"
-              href="#popup"
+            <button
+              className="detailLikedUser"
               onClick={handleToggleButtonClick}
             >
               表示
-            </a>
-            <Test name={props.name} />
+            </button>
           </ListItem>
         </div>
       ) : (
