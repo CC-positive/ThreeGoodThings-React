@@ -4,6 +4,7 @@ import TGTInput from "./TGTInput";
 import TGTList from "./TGTList";
 import React from "react";
 import MyPage from "./MyPage";
+import Top from "./Top";
 import RecommendList from "./RecommendList";
 import { useEffect, useState } from "react";
 import { config } from "../config";
@@ -119,7 +120,6 @@ function App({ classes }) {
               updatestate={updatestate}
               idToken={idToken}
               googleId={googleId}
-              setCurrentView={setCurrentView}
               continuous={continuous}
             />
           </>
@@ -165,11 +165,10 @@ function App({ classes }) {
             googleId={googleId}
           />
         ) : (
-          <>
-            <h3>今日の3つのいいことを投稿してみよう</h3>
-            <br />
-          </>
+          <></>
         )}
+
+        {!loginSuccess ? <Top /> : <></>}
       </div>
     </div>
   );
