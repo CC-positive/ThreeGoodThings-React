@@ -91,7 +91,7 @@ function TGTInput(props) {
     getTmp();
   }, []);
 
-  const onButtonClick = () => {
+  const onButtonClick = async () => {
     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
     const posObj = {
       userName: props.userName,
@@ -116,6 +116,13 @@ function TGTInput(props) {
     // リクエストをURLに送信
     let json = JSON.stringify(posObj);
     request.send(json);
+
+    function sleepByPromise(sec) {
+      return new Promise((resolve) => setTimeout(resolve, sec * 1000));
+    }
+
+    await sleepByPromise(1);
+    props.setToday(true);
   };
 
   function handleInputChange1(e) {

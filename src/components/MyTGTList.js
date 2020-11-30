@@ -35,7 +35,7 @@ function MyTGTList(props) {
 
   const getMyTGTList = async () => {
     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
-    const url = API_ENDPOINT + "v1/threetter/posts";
+    const url = API_ENDPOINT + "v1/threetter/posts/googleId";
     const headers = {};
     const header = JSON.stringify(headers);
     const method = "GET";
@@ -57,6 +57,7 @@ function MyTGTList(props) {
         .catch((e) => console.error(e));
       setApiSuccess(true);
       setMyTGTData(data);
+      console.log(data);
     } catch (e) {
       console.log(e);
       setApiSuccess(false);
