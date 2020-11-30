@@ -8,7 +8,6 @@ import RecommendList from "./RecommendList";
 import { useEffect, useState } from "react";
 import { config } from "../config";
 import { useCookies } from "react-cookie";
-import PropTypes from "prop-types";
 
 function App({ classes }) {
   const [toukouState, setToukouState] = useState(0);
