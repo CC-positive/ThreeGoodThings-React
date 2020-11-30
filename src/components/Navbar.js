@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
   },
   navber: {
     backgroundColor: "white",
-    background: "transparent",
-    boxShadow: "none",
+    opacity: 0.7,
+    marginBottom: "20px",
   },
 }));
 
