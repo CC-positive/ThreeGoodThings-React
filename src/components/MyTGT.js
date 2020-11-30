@@ -49,6 +49,8 @@ function MyTGT(props) {
               tgtId={props.tgt.id1}
               tokenId={props.tokenId}
               googleId={props.googleId}
+              updateName={props.updateName}
+              name={props.name}
             />
             <Divider variant="inset" component="li" />
             <MyTGTShingle
@@ -56,6 +58,8 @@ function MyTGT(props) {
               tgtId={props.tgt.id2}
               tokenId={props.tokenId}
               googleId={props.googleId}
+              updateName={props.updateName}
+              name={props.name}
             />
             <Divider variant="inset" component="li" />
             <MyTGTShingle
@@ -63,6 +67,8 @@ function MyTGT(props) {
               tgtId={props.tgt.id3}
               tokenId={props.tokenId}
               googleId={props.googleId}
+              updateName={props.updateName}
+              name={props.name}
             />
             <Divider variant="inset" component="li" />
           </List>

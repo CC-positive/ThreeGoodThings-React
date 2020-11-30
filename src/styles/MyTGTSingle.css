@@ -1,0 +1,85 @@
+.popup-menu {
+  transform: scale(0);
+  transform-origin: top left;
+
+  transition: transform 0.2s;
+}
+
+.popup-menu.shown {
+  transform: scale(1);
+}
+
+.container {
+  /*全体*/
+  background-color: #9191e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.button {
+  /*ボタンのスタイル*/
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  display: inline-block;
+  border-radius: 1.5rem;
+  background-color: #fff;
+  color: #9191e9;
+  padding: 1rem 2rem;
+}
+
+.inner {
+  position: fixed;
+  width: 80vw;
+  height: 80vh;
+  background-color: white;
+}
+
+.popup {
+  /*ポップアップするコンテンツ。予め全画面表示、positionで位置調整し、非表示にし、回転もさせておく*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  bottom: -100vw;
+  right: -100vh;
+  z-index: 2;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.64s ease-in-out;
+  transform: rotate(32deg);
+}
+.popup:target {
+  /*ボタンがクリックされたら表示しつつ、回転させ元の位置に戻す*/
+  bottom: 0;
+  right: 0;
+  visibility: visible;
+  opacity: 1;
+  transform: rotate(0);
+}
+
+.popup__close {
+  /*閉じるボタンのスタイル。クリックする事で:targetが外れ、非表示に戻る*/
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+  width: 3rem;
+  height: 3rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+  border-radius: 100%;
+  background-color: #0a0a0a;
+  z-index: 4;
+  color: #fff;
+  line-height: 3rem;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}

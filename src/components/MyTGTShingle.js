@@ -9,10 +9,14 @@ import {
 import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import { blue } from "@material-ui/core/colors";
 import { config } from "../config";
+import "../styles/MyTGTSingle.css";
+import Test from "./Test";
 
 function MyTGTShingle(props) {
   const [likeCount, setLikeCount] = useState(0);
   const [likedUsers, setLikedUsers] = useState([]);
+
+  const [isShown, setIsShown] = useState(false);
 
   useEffect(() => {
     const getMyTGT = async () => {
@@ -39,7 +43,6 @@ function MyTGTShingle(props) {
         userList.push(data.likedUser);
 
         setLikedUsers(userList);
-        console.log(likedUsers);
       } catch (e) {
         console.log(e);
       }
@@ -47,10 +50,21 @@ function MyTGTShingle(props) {
     getMyTGT();
   }, []);
 
+  const handleToggleButtonClick = () => {
+    console.log("OK");
+    if (likedUsers.length === 0) {
+      console.log("0");
+      props.updateName(["0"]);
+    } else {
+      console.log(likedUsers.map((user) => user.userName));
+      props.updateName(likedUsers.map((user) => user.userName));
+    }
+  };
+
   return (
     <>
       {likedUsers.length !== 0 ? (
-        <>
+        <div className="List">
           <ListItem>
             <ListItemAvatar>
               <div>
@@ -72,8 +86,16 @@ function MyTGTShingle(props) {
               </div>
             </ListItemAvatar>
             <ListItemText primary={props.goodThingText} />
+            <a
+              className="button"
+              href="#popup"
+              onClick={handleToggleButtonClick}
+            >
+              表示
+            </a>
+            <Test name={props.name} />
           </ListItem>
-        </>
+        </div>
       ) : (
         <>
           <p>Now loading...</p>

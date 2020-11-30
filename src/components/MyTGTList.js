@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 function MyTGTList(props) {
   const [myTGTData, setMyTGTData] = useState([]);
   const [apiSuccess, setApiSuccess] = useState(true);
+  const [name, setName] = useState([]);
 
   const getMyTGTList = async () => {
     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
@@ -83,6 +84,10 @@ function MyTGTList(props) {
 
   }*/
 
+  function updateName(name) {
+    setName(name);
+  }
+
   useEffect(() => {
     getMyTGTList();
     //pushMyTGTList();
@@ -90,6 +95,7 @@ function MyTGTList(props) {
     console.log(myTGTData);
   }, []);
 
+  console.log(name);
   const classes = useStyles();
   return (
     <>
@@ -117,6 +123,8 @@ function MyTGTList(props) {
                       tgt={myTGTData[idx].tgts}
                       tokenId={props.tokenId}
                       googleId={props.googleId}
+                      updateName={updateName}
+                      name={name}
                     />
                   </Grid>
                 );
