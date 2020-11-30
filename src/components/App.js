@@ -8,12 +8,7 @@ import RecommendList from "./RecommendList";
 import { useEffect, useState } from "react";
 import { config } from "../config";
 import { useCookies } from "react-cookie";
-import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-
-const styles = (theme) => ({
-  toolbar: theme.mixins.toolbar,
-});
 
 function App({ classes }) {
   const [toukouState, setToukouState] = useState(0);
@@ -115,7 +110,6 @@ function App({ classes }) {
         setCurrentView={setCurrentView}
         setCookie={setCookie}
       />
-      <div className={classes.toolbar} />
       <div>
         {currentView === "myPage" ? (
           <>
@@ -182,8 +176,4 @@ function App({ classes }) {
   );
 }
 
-App.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(App);
+export default App;
