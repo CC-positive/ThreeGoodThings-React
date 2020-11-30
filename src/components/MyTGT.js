@@ -49,8 +49,9 @@ function MyTGT(props) {
               tgtId={props.tgt.id1}
               tokenId={props.tokenId}
               googleId={props.googleId}
-              updateName={props.updateName}
-              name={props.name}
+              setName={props.setName}
+              setCurrentLikeView={props.setCurrentLikeView}
+              setImg={props.setImg}
             />
             <Divider variant="inset" component="li" />
             <MyTGTShingle
@@ -58,8 +59,9 @@ function MyTGT(props) {
               tgtId={props.tgt.id2}
               tokenId={props.tokenId}
               googleId={props.googleId}
-              updateName={props.updateName}
-              name={props.name}
+              setName={props.setName}
+              setCurrentLikeView={props.setCurrentLikeView}
+              setImg={props.setImg}
             />
             <Divider variant="inset" component="li" />
             <MyTGTShingle
@@ -67,8 +69,9 @@ function MyTGT(props) {
               tgtId={props.tgt.id3}
               tokenId={props.tokenId}
               googleId={props.googleId}
-              updateName={props.updateName}
-              name={props.name}
+              setName={props.setName}
+              setCurrentLikeView={props.setCurrentLikeView}
+              setImg={props.setImg}
             />
             <Divider variant="inset" component="li" />
           </List>
