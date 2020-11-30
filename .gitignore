@@ -3,3 +3,4 @@ debug.log
 *.log
 *.env
 .eslintcache
+.DS_Store

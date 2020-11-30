@@ -6,7 +6,6 @@ import React from "react";
 import MyPage from "./MyPage";
 import RecommendList from "./RecommendList";
 import { useEffect, useState } from "react";
-import { GoogleLogin } from "react-google-login";
 import { config } from "../config";
 import { useCookies } from "react-cookie";
 
@@ -61,46 +60,6 @@ function App() {
     }
   };
 
-  const login = async (response) => {
-    if (response.tokenId && response.profileObj) {
-      setIdToken(response.tokenId);
-      setGoogleId(response.profileObj.googleId);
-      setUserName(response.profileObj.name);
-      setImgUrl(response.profileObj.imageUrl);
-      setLoginSuccess(true);
-      //save cookie
-      setCookie("googleId", response.profileObj.googleId);
-      setCookie("idToken", response.tokenId);
-      setCookie("userName", response.profileObj.name);
-      setCookie("imgUrl", response.profileObj.imageUrl);
-      ////login api send
-      //set header
-      const API_ENDPOINT = config.THREETER_API_ENDPOINT;
-      const url = API_ENDPOINT + "v1/threetter/login";
-      //set body
-      const obj = {};
-      obj.googleId = response.profileObj.googleId;
-      obj.userName = response.profileObj.name;
-      obj.picture = response.profileObj.imageUrl;
-      try {
-        const res = await fetch(url, {
-          method: "POST", // *GET, POST, PUT, DELETE, etc.
-          mode: "cors", // no-cors, *cors, same-origin
-          headers: {
-            "Content-Type": "application/json",
-            "x-auth-token": response.tokenId,
-            "x-googleid": response.profileObj.googleId,
-          },
-          redirect: "follow", // manual, *follow, error
-          body: JSON.stringify(obj), // 本文のデータ型は "Content-Type" ヘッダーと一致する必要があります
-        });
-      } catch {
-        console.log("登録に失敗しました。");
-      }
-      reward(response.profileObj.googleId, response.tokenId);
-    }
-  };
-
   function updateGoogleState() {
     setLoginSuccess(false);
     setIdToken("");
@@ -112,14 +71,6 @@ function App() {
     removeCookie("userName");
     removeCookie("imgUrl");
   }
-
-  const handleLoginFailure = (response) => {
-    alert("Failed to log in");
-  };
-
-  const handleLogoutFailure = (response) => {
-    alert("Failed to log out");
-  };
 
   function updatestate() {
     setToukouState(toukouState + 1);
@@ -150,10 +101,18 @@ function App() {
     <div className="App">
       <Navbar
         loginSuccess={loginSuccess}
+        setLoginSuccess={setLoginSuccess}
+        setIdToken={setIdToken}
+        setGoogleId={setGoogleId}
         updateGoogleState={updateGoogleState}
         googleId={googleId}
+        setUserName={setUserName}
+        setImgUrl={setImgUrl}
+        setToday={setToday}
         continuous={continuous}
+        setContinuous={setContinuous}
         setCurrentView={setCurrentView}
+        setCookie={setCookie}
       />
       <div>
         {currentView === "myPage" ? (
@@ -214,14 +173,6 @@ function App() {
           <>
             <h3>今日の3つのいいことを投稿してみよう</h3>
             <br />
-            <GoogleLogin
-              clientId={CLIENT_ID}
-              buttonText="Login"
-              onSuccess={login}
-              onFailure={handleLoginFailure}
-              cookiePolicy={"single_host_origin"}
-              responseType="code,token"
-            />
           </>
         )}
       </div>

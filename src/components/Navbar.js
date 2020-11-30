@@ -4,8 +4,10 @@ import { cyan } from "@material-ui/core/colors";
 import img from "../image/threetter_logo.png";
 import AppBar from "@material-ui/core/AppBar";
 import Grid from "@material-ui/core/Grid";
+import { GoogleLogin } from "react-google-login";
 import { GoogleLogout } from "react-google-login";
 import { makeStyles } from "@material-ui/core/styles";
+import { config } from "../config";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -24,10 +26,13 @@ function Navbar(props) {
   const [imgData, setImgData] = useState(img);
   const classes = useStyles();
   const CLIENT_ID =
-    "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
+    "1046055868678-v0icks04vbpf8i26ur786o0h27vfff48.apps.googleusercontent.com";
+  // const CLIENT_ID =
+  //   "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
 
   const logout = () => {
     props.updateGoogleState();
+    props.setCurrentView("home");
   };
 
   const handleLogoutFailure = () => {
@@ -36,6 +41,50 @@ function Navbar(props) {
 
   const goMyPage = () => {
     props.setCurrentView("myPage");
+  };
+
+  const login = async (response) => {
+    if (response.tokenId && response.profileObj) {
+      props.setIdToken(response.tokenId);
+      props.setGoogleId(response.profileObj.googleId);
+      props.setUserName(response.profileObj.name);
+      props.setImgUrl(response.profileObj.imageUrl);
+      props.setLoginSuccess(true);
+      //save cookie
+      props.setCookie("googleId", response.profileObj.googleId);
+      props.setCookie("idToken", response.tokenId);
+      props.setCookie("userName", response.profileObj.name);
+      props.setCookie("imgUrl", response.profileObj.imageUrl);
+      ////login api send
+      //set header
+      const API_ENDPOINT = config.THREETER_API_ENDPOINT;
+      const url = API_ENDPOINT + "v1/threetter/login";
+      //set body
+      const obj = {};
+      obj.googleId = response.profileObj.googleId;
+      obj.userName = response.profileObj.name;
+      obj.picture = response.profileObj.imageUrl;
+      try {
+        const res = await fetch(url, {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": response.tokenId,
+            "x-googleid": response.profileObj.googleId,
+          },
+          redirect: "follow", // manual, *follow, error
+          body: JSON.stringify(obj), // 本文のデータ型は "Content-Type" ヘッダーと一致する必要があります
+        });
+      } catch {
+        console.log("登録に失敗しました。");
+      }
+      // reward(response.profileObj.googleId, response.tokenId);
+    }
+  };
+
+  const handleLoginFailure = (response) => {
+    alert("Failed to log in");
   };
 
   return (
@@ -59,7 +108,16 @@ function Navbar(props) {
           ></GoogleLogout>
         </Grid>
       ) : (
-        <></>
+        <>
+          <GoogleLogin
+            clientId={CLIENT_ID}
+            buttonText="Login"
+            onSuccess={login}
+            onFailure={handleLoginFailure}
+            cookiePolicy={"single_host_origin"}
+            responseType="code,token"
+          />
+        </>
       )}
     </AppBar>
   );
