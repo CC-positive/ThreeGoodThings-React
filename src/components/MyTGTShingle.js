@@ -10,13 +10,22 @@ import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import { blue } from "@material-ui/core/colors";
 import { config } from "../config";
 import "../styles/MyTGTSingle.css";
-import Test from "./Test";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 function MyTGTShingle(props) {
   const [likeCount, setLikeCount] = useState(0);
   const [likedUsers, setLikedUsers] = useState([]);
 
   const [isShown, setIsShown] = useState(false);
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+  }));
 
   useEffect(() => {
     const getMyTGT = async () => {
@@ -71,6 +80,8 @@ function MyTGTShingle(props) {
     props.setCurrentLikeView("singleLike");
   };
 
+  const classes = useStyles();
+
   return (
     <>
       {likedUsers.length !== 0 ? (
@@ -100,13 +111,14 @@ function MyTGTShingle(props) {
               </div>
             </ListItemAvatar>
             <ListItemText primary={props.goodThingText} />
-            <button
+            <Button
+              variant="contained"
               className="detailLikedUser"
               onClick={handleToggleButtonClick}
               disabled={likedUsers[0].length === 0}
             >
-              表示
-            </button>
+              ユーザーを表示
+            </Button>
           </ListItem>
         </div>
       ) : (
