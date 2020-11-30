@@ -8,8 +8,14 @@ import RecommendList from "./RecommendList";
 import { useEffect, useState } from "react";
 import { config } from "../config";
 import { useCookies } from "react-cookie";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
-function App() {
+const styles = (theme) => ({
+  toolbar: theme.mixins.toolbar,
+});
+
+function App({ classes }) {
   const [toukouState, setToukouState] = useState(0);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [idToken, setIdToken] = useState("");
@@ -27,10 +33,6 @@ function App() {
   ]);
   const [recommend, setRecommend] = useState(false);
   const [currentView, setCurrentView] = useState("home");
-
-  const CLIENT_ID =
-    "1046055868678-v0icks04vbpf8i26ur786o0h27vfff48.apps.googleusercontent.com";
-  // const CLIENT_ID = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
   const reward = async (xGoogleId, xAuthToken) => {
     const API_ENDPOINT = config.THREETER_API_ENDPOINT;
@@ -110,10 +112,10 @@ function App() {
         setImgUrl={setImgUrl}
         setToday={setToday}
         continuous={continuous}
-        setContinuous={setContinuous}
         setCurrentView={setCurrentView}
         setCookie={setCookie}
       />
+      <div className={classes.toolbar} />
       <div>
         {currentView === "myPage" ? (
           <>
@@ -180,4 +182,8 @@ function App() {
   );
 }
 
-export default App;
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(App);

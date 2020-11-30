@@ -1,24 +1,32 @@
 import { useState } from "react";
 import React from "react";
-import { cyan } from "@material-ui/core/colors";
 import img from "../image/threetter_logo.png";
 import AppBar from "@material-ui/core/AppBar";
 import Grid from "@material-ui/core/Grid";
 import { GoogleLogin } from "react-google-login";
 import { GoogleLogout } from "react-google-login";
 import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import PersonPinIcon from "@material-ui/icons/PersonPin";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { config } from "../config";
 
 const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
   icon: {
     marginLeft: "auto",
     marginRight: "auto",
+    height: 60,
   },
   logout: {
     marginLeft: "auto",
   },
   navber: {
-    backgroundColor: cyan[100],
+    backgroundColor: "white",
+    background: "transparent",
+    boxShadow: "none",
   },
 }));
 
@@ -27,8 +35,7 @@ function Navbar(props) {
   const classes = useStyles();
   const CLIENT_ID =
     "1046055868678-v0icks04vbpf8i26ur786o0h27vfff48.apps.googleusercontent.com";
-  // const CLIENT_ID =
-  //   "535477566115-nk6dj1hrk0gvsfrmhimmbqgts7f3puqt.apps.googleusercontent.com";
+  // const CLIENT_ID = process.env.REACT_APP_OAUTH_CLIENT_ID;
 
   const logout = () => {
     props.updateGoogleState();
@@ -88,37 +95,83 @@ function Navbar(props) {
   };
 
   return (
-    <AppBar position="static" className={classes.navber}>
-      <Grid item xs={12}>
-        <img src={imgData} alt="ローディング中" title="threeter"></img>
-      </Grid>
-      {props.loginSuccess ? (
-        <Grid item className={classes.logout}>
-          <Grid>
-            <font color="black">{props.continuous}日連続投稿中</font>
-          </Grid>
-          <button className="myPage-button" onClick={goMyPage}>
-            MyPage
-          </button>
-          <GoogleLogout
-            clientId={CLIENT_ID}
-            buttonText="Logout"
-            onLogoutSuccess={logout}
-            onFailure={handleLogoutFailure}
-          ></GoogleLogout>
+    <AppBar position="sticky" className={classes.navber}>
+      <Grid container>
+        <Grid item xs={2} className={classes.image}>
+          <img
+            src={imgData}
+            alt="ローディング中"
+            title="threeter"
+            className={classes.icon}
+          ></img>
         </Grid>
-      ) : (
-        <>
-          <GoogleLogin
-            clientId={CLIENT_ID}
-            buttonText="Login"
-            onSuccess={login}
-            onFailure={handleLoginFailure}
-            cookiePolicy={"single_host_origin"}
-            responseType="code,token"
-          />
-        </>
-      )}
+        {props.loginSuccess ? (
+          <Grid item xs={6}></Grid>
+        ) : (
+          <Grid item xs={8}></Grid>
+        )}
+        {props.loginSuccess ? (
+          <Grid item className={classes.logout} xs={4}>
+            <Grid container>
+              <Grid item xs={6}>
+                <Button
+                  size="large"
+                  className={classes.button}
+                  startIcon={<PersonPinIcon />}
+                  onClick={goMyPage}
+                >
+                  MYPAGE
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <GoogleLogout
+                  clientId={CLIENT_ID}
+                  render={(renderProps) => (
+                    <Button
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                      // variant="contained"
+                      variant="outlined"
+                      // color="primary"
+                      size="large"
+                      className={classes.button}
+                      startIcon={<ExitToAppIcon />}
+                    >
+                      LOGOUT
+                    </Button>
+                  )}
+                  onLogoutSuccess={logout}
+                  onFailure={handleLogoutFailure}
+                ></GoogleLogout>
+              </Grid>
+            </Grid>
+          </Grid>
+        ) : (
+          <Grid item xs={2} className={classes.login}>
+            <GoogleLogin
+              clientId={CLIENT_ID}
+              render={(renderProps) => (
+                <Button
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  // variant="contained"
+                  variant="outlined"
+                  // color="primary"
+                  size="large"
+                  className={classes.button}
+                  startIcon={<PersonPinIcon />}
+                >
+                  LOGIN
+                </Button>
+              )}
+              onSuccess={login}
+              onFailure={handleLoginFailure}
+              cookiePolicy={"single_host_origin"}
+              responseType="code,token"
+            />
+          </Grid>
+        )}
+      </Grid>
     </AppBar>
   );
 }
