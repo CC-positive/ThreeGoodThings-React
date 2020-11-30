@@ -16,6 +16,7 @@ function App() {
   const [googleId, setGoogleId] = useState("");
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+  const [email, setEmail] = useState("");
   const [today, setToday] = useState(false);
   const [updateFlag, setUpdateFlag] = useState("OFF");
   const [continuous, setContinuous] = useState(0);
@@ -108,6 +109,7 @@ function App() {
         googleId={googleId}
         setUserName={setUserName}
         setImgUrl={setImgUrl}
+        setEmail={setEmail}
         setToday={setToday}
         continuous={continuous}
         setContinuous={setContinuous}
