@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { useState, useEffect } from "react";
-import moment from "moment";
+import Button from "@material-ui/core/Button";
 import "moment/locale/ja";
 import testData from "../util/testTGTList.json";
 import {
@@ -18,13 +18,9 @@ import { config } from "../config";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    textAlign: "left",
-  },
-  avatar: {
-    backgroundColor: blue[500],
-  },
-  header: {
-    marginBottom: -20,
+    "& > *": {
+      margin: theme.spacing(1),
+    },
   },
 }));
 
@@ -79,7 +75,7 @@ function RecommendList(props) {
   return (
     <>
       {recommendList.length !== 0 ? (
-        <>
+        <div className={classes.root}>
           <Card className={classes.root} elevation={3}>
             <CardContent>
               <List>
@@ -109,17 +105,15 @@ function RecommendList(props) {
             </CardContent>
           </Card>
 
-          <p>
-            {" "}
-            <button
-              type="submit"
-              className="submit-button"
-              onClick={onRecommendClick}
-            >
-              一覧画面に戻る
-            </button>
-          </p>
-        </>
+          <Button
+            variant="contained"
+            type="submit"
+            className="submit-button"
+            onClick={onRecommendClick}
+          >
+            一覧画面に戻る
+          </Button>
+        </div>
       ) : (
         <>
           <p>Now loading...</p>

@@ -1,25 +1,8 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import {
-  ListItem,
-  ListItemText,
-  ListItemAvatar,
-  Typography,
-} from "@material-ui/core";
-import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
-import { blue } from "@material-ui/core/colors";
-import { config } from "../config";
-import "../styles/MyTGTSingle.css";
-import Test from "./Test";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 import "../styles/LikedUser.css";
-import {
-  List,
-  Avatar,
-  Divider,
-  Card,
-  CardHeader,
-  CardContent,
-} from "@material-ui/core";
 
 function LikedUser(props) {
   const back = () => {
@@ -27,10 +10,22 @@ function LikedUser(props) {
     console.log(props.img);
   };
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <div className="likedBySingle" title="あなたにいいねしてくれた人">
       <A img={props.img} />
-      <button onClick={back}>表示を消す</button>
+      <Button variant="contained" onClick={back}>
+        表示を消す
+      </Button>
     </div>
   );
 }
