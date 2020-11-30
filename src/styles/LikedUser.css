@@ -1,0 +1,61 @@
+.likedBySingle {
+  position: relative;
+  padding: 0.5em 1em;
+  margin: 2em 4em;
+  font-weight: bold;
+  color: #0059b3;
+  background: #fff;
+  border: solid 3px #6091d3;
+  border-radius: 10px;
+}
+.likedBySingle p {
+  margin: 0;
+  padding: 0;
+}
+
+.likedBySingle::before {
+  position: absolute;
+  display: inline-block;
+  box-sizing: border-box;
+  line-height: 1;
+  background: #0059b3;
+  color: #ffffff;
+  content: attr(title);
+  font-weight: bold;
+  padding: 8px 15px;
+  top: -17px;
+  left: 16px;
+  border-radius: 16px;
+  font-size: 16px;
+}
+
+.likedUser {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.likeList {
+  display: inline-block;
+  margin: 3px;
+}
+
+.likeList {
+  padding: 1em 1em;
+  text-align: center;
+  margin: 10px;
+  position: relative;
+  width: 100px;
+  border: solid 3px #0059b3;
+  border-radius: 5%;
+}
+
+.avator {
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.name-color {
+  color: white;
+  font-weight: bold;
+}
