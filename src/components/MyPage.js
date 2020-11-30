@@ -14,9 +14,11 @@ function MyPage(props) {
 
   return (
     <div>
-      <img className="userPhoto" alt="googleUserImg" src={props.imgUrl} />
-      <p className="userName">{props.userName}</p>
-      <p className="myInfo">{props.continuous}日連続投稿中</p>
+      <div className="myArea">
+        <img className="userPhoto" alt="googleUserImg" src={props.imgUrl} />
+        <p className="userName">{props.userName}</p>
+        <p className="myInfo">{props.continuous}日連続投稿中</p>
+      </div>
 
       <div className="likedBy" title="あなたにいいねしてくれた人">
         <MyTGTList
