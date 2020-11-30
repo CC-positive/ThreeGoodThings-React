@@ -50,6 +50,10 @@ function Navbar(props) {
     props.setCurrentView("myPage");
   };
 
+  const goHomePage = () => {
+    props.setCurrentView("home");
+  };
+
   const login = async (response) => {
     if (response.tokenId && response.profileObj) {
       props.setIdToken(response.tokenId);
@@ -103,6 +107,7 @@ function Navbar(props) {
             alt="ローディング中"
             title="threeter"
             className={classes.icon}
+            onClick={goHomePage}
           ></img>
         </Grid>
         {props.loginSuccess ? (

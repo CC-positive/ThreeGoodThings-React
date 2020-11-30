@@ -79,7 +79,11 @@ function MyTGTShingle(props) {
             <ListItemAvatar>
               <div>
                 <ThumbUpAltRoundedIcon
-                  style={{ color: blue[500], fontSize: 35 }}
+                  style={
+                    likeCount !== 0
+                      ? { color: blue[500] }
+                      : { color: blue[100] }
+                  }
                 />
                 <Typography
                   className="likeCap"
@@ -99,6 +103,7 @@ function MyTGTShingle(props) {
             <button
               className="detailLikedUser"
               onClick={handleToggleButtonClick}
+              disabled={likedUsers[0].length === 0}
             >
               表示
             </button>
