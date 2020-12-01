@@ -13,7 +13,7 @@ function MyPage(props) {
   useEffect(() => {}, []);
 
   return (
-    <div>
+    <div className="all">
       <div className="myArea">
         <img className="userPhoto" alt="googleUserImg" src={props.imgUrl} />
         <p className="userName">{props.userName}</p>

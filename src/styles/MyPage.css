@@ -1,18 +1,18 @@
 .userPhoto {
   margin-left: auto;
   margin-right: auto;
-  height: 150px;
+  height: 200px;
   width: auto;
 }
 
 .myArea {
-  padding: 0.5em 1em;
+  padding: 1em;
   margin: 100px;
   margin-left: auto;
   margin-right: auto;
   margin: auto;
   position: relative;
-  width: 30%;
+  width: 90%;
   top: 0;
   left: 0;
   right: 0;
@@ -24,29 +24,30 @@
 .userName {
   margin-left: auto;
   margin-right: auto;
-  width: 30%;
+  width: 80%;
   text-align: top;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .myInfo {
   margin-left: auto;
   margin-right: auto;
-  width: 30%;
+  width: 70%;
   text-align: top;
 }
 
 .likedBy {
   position: relative;
-  padding: 0.5em 1em;
+  padding: 1em;
   margin: 2em 4em;
   font-weight: bold;
-  color: #6091d3;
+  color: #0059b3;
   background: #fff;
   border: solid 3px #6091d3;
   border-radius: 10px;
 }
+
 .likedBy p {
   margin: 0;
   padding: 0;
@@ -61,7 +62,7 @@
   color: #ffffff;
   content: attr(title);
   font-weight: bold;
-  padding: 8px 15px;
+  padding: 8px;
   top: -17px;
   left: 16px;
   border-radius: 16px;
