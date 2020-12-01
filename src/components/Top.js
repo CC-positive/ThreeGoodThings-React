@@ -7,7 +7,7 @@ import { blue } from "@material-ui/core/colors";
 import { config } from "../config";
 import useInterval from "use-interval";
 import "../styles/Top.css";
-import img from "../image/top.PNG";
+import img from "../image/3goodthings2.png";
 
 function Top(props) {
   const [imgData, setImgData] = useState(img);
