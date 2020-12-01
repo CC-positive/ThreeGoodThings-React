@@ -60,12 +60,14 @@ function Navbar(props) {
       props.setGoogleId(response.profileObj.googleId);
       props.setUserName(response.profileObj.name);
       props.setImgUrl(response.profileObj.imageUrl);
+      props.setEmail(response.profileObj.email);
       props.setLoginSuccess(true);
       //save cookie
       props.setCookie("googleId", response.profileObj.googleId);
       props.setCookie("idToken", response.tokenId);
       props.setCookie("userName", response.profileObj.name);
       props.setCookie("imgUrl", response.profileObj.imageUrl);
+      props.setCookie("email", response.profileObj.email);
       ////login api send
       //set header
       const API_ENDPOINT = config.THREETER_API_ENDPOINT;
@@ -75,6 +77,7 @@ function Navbar(props) {
       obj.googleId = response.profileObj.googleId;
       obj.userName = response.profileObj.name;
       obj.picture = response.profileObj.imageUrl;
+      obj.email = response.profileObj.email;
       try {
         const res = await fetch(url, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.

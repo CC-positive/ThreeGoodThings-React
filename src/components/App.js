@@ -17,6 +17,7 @@ function App({ classes }) {
   const [googleId, setGoogleId] = useState("");
   const [userName, setUserName] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+  const [email, setEmail] = useState("");
   const [today, setToday] = useState(false);
   const [updateFlag, setUpdateFlag] = useState("OFF");
   const [continuous, setContinuous] = useState(0);
@@ -25,6 +26,7 @@ function App({ classes }) {
     "googleId",
     "userName",
     "imgUrl",
+    "email",
   ]);
   const [recommend, setRecommend] = useState(false);
   const [currentView, setCurrentView] = useState("home");
@@ -63,10 +65,12 @@ function App({ classes }) {
     setGoogleId("");
     setUserName("");
     setImgUrl("");
+    setEmail("");
     removeCookie("googleId");
     removeCookie("idToken");
     removeCookie("userName");
     removeCookie("imgUrl");
+    removeCookie("email");
   }
 
   function updatestate() {
@@ -79,6 +83,7 @@ function App({ classes }) {
       const cookieIdToken = cookies.idToken;
       const cookieUserName = cookies.userName;
       const cookieImgUrl = cookies.imgUrl;
+      const cookieEmail = cookies.email;
       const validatePath = "https://oauth2.googleapis.com/tokeninfo?id_token=";
       const path = validatePath + cookieIdToken;
       const authRes = await fetch(path);
@@ -87,6 +92,7 @@ function App({ classes }) {
         setIdToken(cookieIdToken);
         setUserName(cookieUserName);
         setImgUrl(cookieImgUrl);
+        setEmail(cookieEmail);
         setLoginSuccess(true);
         reward(cookieGoogleId, cookieIdToken);
       }
@@ -105,6 +111,7 @@ function App({ classes }) {
         googleId={googleId}
         setUserName={setUserName}
         setImgUrl={setImgUrl}
+        setEmail={setEmail}
         setToday={setToday}
         continuous={continuous}
         setCurrentView={setCurrentView}
