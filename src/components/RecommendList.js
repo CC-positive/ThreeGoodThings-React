@@ -83,21 +83,21 @@ function RecommendList(props) {
                 <TGTRecommend
                   goodThingText={recommendList[0].tgtText}
                   tgtId={recommendList[0].tgtId}
-                  tokenId={props.tokenId}
+                  tokenId={props.idToken}
                   googleId={props.googleId}
                 />
                 <Divider variant="inset" component="li" />
                 <TGTRecommend
                   goodThingText={recommendList[1].tgtText}
                   tgtId={recommendList[1].tgtId}
-                  tokenId={props.tokenId}
+                  tokenId={props.idToken}
                   googleId={props.googleId}
                 />
                 <Divider variant="inset" component="li" />
                 <TGTRecommend
                   goodThingText={recommendList[2].tgtText}
                   tgtId={recommendList[2].tgtId}
-                  tokenId={props.tokenId}
+                  tokenId={props.idToken}
                   googleId={props.googleId}
                 />
                 <Divider variant="inset" component="li" />

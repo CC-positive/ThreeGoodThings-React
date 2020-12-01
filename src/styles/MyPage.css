@@ -1,7 +1,7 @@
 .userPhoto {
   margin-left: auto;
   margin-right: auto;
-  height: 200px;
+  height: 150px;
   width: auto;
 }
 
@@ -12,7 +12,8 @@
   margin-right: auto;
   margin: auto;
   position: relative;
-  width: 90%;
+  width: 70%;
+  height: auto;
   top: 0;
   left: 0;
   right: 0;
@@ -40,7 +41,7 @@
 .likedBy {
   position: relative;
   padding: 1em;
-  margin: 2em 4em;
+  margin: 10px 10px;
   font-weight: bold;
   color: #0059b3;
   background: #fff;
