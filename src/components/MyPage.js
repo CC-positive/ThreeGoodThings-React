@@ -10,15 +10,10 @@ function MyPage(props) {
   const [name, setName] = useState([]);
   const [img, setImg] = useState([]);
 
-  const goHome = () => {
-    props.setCurrentView("home");
-    console.log(props.imgUrl);
-  };
-
   useEffect(() => {}, []);
 
   return (
-    <div>
+    <div className="all">
       <div className="myArea">
         <img className="userPhoto" alt="googleUserImg" src={props.imgUrl} />
         <p className="userName">{props.userName}</p>
@@ -48,10 +43,6 @@ function MyPage(props) {
           setImg={setImg}
         />
       </div>
-
-      <button className="home-button" onClick={goHome}>
-        home
-      </button>
     </div>
   );
 }

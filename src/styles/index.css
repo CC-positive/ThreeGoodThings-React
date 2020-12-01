@@ -4,7 +4,6 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 
-  background: url("../image/sky.png");
   background-size: cover;
   background-attachment: fixed;
 }
@@ -12,4 +11,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.sample {
+  background: url("https://cdn.omni-links.com/tourimages/thumb/df1526f61756230f0d5f939eea58855d_thumb_1680x1280.jpg");
+  background: url("https://beiz.jp/images_T/sky/sky_00051.jpg");
+  background: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwoICg0HBwgHBwcHDgoHBwcHBxsICQcKFREWFhURHx8YHCggGBolJxMTITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NGg0PGjcZFRkrKysrKystKysrKysrKysrKysrKysyKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAAAQQHBv/EAB4QAQABBQEBAQEAAAAAAAAAAAABBFSBkZMV8DER/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAIFA//EABcRAQEBAQAAAAAAAAAAAAAAAAARIQH/2gAMAwEAAhEDEQA/AOcejV3lX3k9GrvKvvLKfxrTjjWr0au8q+8no1d5V95ZQnCtXo1d5V95PRq7yr7yyhOFavRq7yr7yejV3lX3llCcK1ejV3lX3k9GrvKvvLKE4Vq9GrvKvvJ6NXeVfeWUJwrV6NXeVfeT0au8q+8sv8CcK1ejV3lX3k9GrvKvvLKE4Vq9GrvKvvJ6NXeVfeWUJwrV6NXeVfeT0au8q+8soThWr0au8q+8no1d5V95ZQnCtXo1d5V95PRq7yr7yyhOFavRq7yr7yejV3lX3llCcK1ejV3lX3k9GrvKvvLKE4Vq9GrvKvvIyhOFURZEIqKAEgAIBKpICgAAACKABACKgKIAqKkAoigIsICiACooIqKAAAACSqSAoAAAAAAACKgKAAkKkAoACKgKIAoigCKAEgEggEqkgKAAAAIoAEAIqAogCpCpAKAAkLCAogAqKCKigAAAAkhICgAAAAAAAIqAoACQqQCgAIqAAAKAIqKBIACKAkhKgAAAAigAQACKgAoAkKkAoAEIqACgIsooIqKBIACKAkhKgAAAAigAQACKgAoAkKkAKAEIqACgIqKCKigBIACASEgKAAAAIoAEAIqAogCpCpAKAAiwgAAKIsgiooASAAgEqkgKAAAAIoAEAIqAogCpCpAKIoCLCAogCiKCKigBIACASqSAoAAAAigAAIqAogCpCpAKAAioCiAKIsgCKAEgEggEqkgKAAAAIoAEAIqAogCpCpAKIoCQsICiACooIqKAAAACSqSAoAAAAAAACKgKAAkKkAoACKgKIAKAIqKBIACKAkhKgAAAAigAQACKgAoAkKgKABCKgAoCb0v34mTJiob0b0ZMmEN6N6MmTCG9H34ZMmEPvw3oyZMIb0ffhkyYRfvw+/EyZMIb0ffhkyYQ3o3oyZMIb0ffhkyYQ+/DejJkwhvRvRkyYQ+/D78MmTCH34b0ZMmEN6DKGEeoAQsAAAAAAAAAAAAAAAAAAAAAAAAAAAB//9k=");
+  background: url("https://030b46df30379e0bf930783bea7c8649.cdnext.stream.ne.jp/archives/002/202008/large-455641af02abdf0facd303b087464c48.jpg");
+  background: url("https://besthqwallpapers.com/Uploads/12-7-2019/99603/thumb2-blue-lines-4k-material-design-creative-geometric-shapes.jpg");
 }

@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { useState, useEffect } from "react";
-import moment from "moment";
+import Button from "@material-ui/core/Button";
 import "moment/locale/ja";
 import testData from "../util/testTGTList.json";
 import {
@@ -16,15 +16,13 @@ import { blue } from "@material-ui/core/colors";
 import TGTRecommend from "./TGTRecommend";
 import { config } from "../config";
 
+import "../styles/RecommendList.css";
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    textAlign: "left",
-  },
-  avatar: {
-    backgroundColor: blue[500],
-  },
-  header: {
-    marginBottom: -20,
+    "& > *": {
+      margin: theme.spacing(1),
+    },
   },
 }));
 
@@ -78,8 +76,9 @@ function RecommendList(props) {
   const classes = useStyles();
   return (
     <>
+      <p className="recommend">他の人の投稿にいいねしよう</p>
       {recommendList.length !== 0 ? (
-        <>
+        <div className={classes.root}>
           <Card className={classes.root} elevation={3}>
             <CardContent>
               <List>
@@ -87,21 +86,21 @@ function RecommendList(props) {
                 <TGTRecommend
                   goodThingText={recommendList[0].tgtText}
                   tgtId={recommendList[0].tgtId}
-                  tokenId={props.tokenId}
+                  tokenId={props.idToken}
                   googleId={props.googleId}
                 />
                 <Divider variant="inset" component="li" />
                 <TGTRecommend
                   goodThingText={recommendList[1].tgtText}
                   tgtId={recommendList[1].tgtId}
-                  tokenId={props.tokenId}
+                  tokenId={props.idToken}
                   googleId={props.googleId}
                 />
                 <Divider variant="inset" component="li" />
                 <TGTRecommend
                   goodThingText={recommendList[2].tgtText}
                   tgtId={recommendList[2].tgtId}
-                  tokenId={props.tokenId}
+                  tokenId={props.idToken}
                   googleId={props.googleId}
                 />
                 <Divider variant="inset" component="li" />
@@ -109,17 +108,15 @@ function RecommendList(props) {
             </CardContent>
           </Card>
 
-          <p>
-            {" "}
-            <button
-              type="submit"
-              className="submit-button"
-              onClick={onRecommendClick}
-            >
-              一覧画面に戻る
-            </button>
-          </p>
-        </>
+          <Button
+            variant="contained"
+            type="submit"
+            className="submit-button"
+            onClick={onRecommendClick}
+          >
+            一覧画面に戻る
+          </Button>
+        </div>
       ) : (
         <>
           <p>Now loading...</p>
