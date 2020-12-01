@@ -11,7 +11,12 @@
   border-radius: 3%;
 }
 
+.test {
+  margin-top: 100px;
+}
 .topPage {
-  width: auto;
+  width: 300px;
+  height: auto;
+  top: 400px;
   background-color: rgba(255, 255, 255, 0.8);
 }
