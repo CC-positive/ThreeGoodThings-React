@@ -64,10 +64,12 @@ function App({ classes }) {
     setGoogleId("");
     setUserName("");
     setImgUrl("");
+    setEmail("");
     removeCookie("googleId");
     removeCookie("idToken");
     removeCookie("userName");
     removeCookie("imgUrl");
+    removeCookie("email");
   }
 
   function updatestate() {
@@ -80,6 +82,7 @@ function App({ classes }) {
       const cookieIdToken = cookies.idToken;
       const cookieUserName = cookies.userName;
       const cookieImgUrl = cookies.imgUrl;
+      const cookieEmail = cookies.email;
       const validatePath = "https://oauth2.googleapis.com/tokeninfo?id_token=";
       const path = validatePath + cookieIdToken;
       const authRes = await fetch(path);
@@ -88,6 +91,7 @@ function App({ classes }) {
         setIdToken(cookieIdToken);
         setUserName(cookieUserName);
         setImgUrl(cookieImgUrl);
+        setEmail(cookieEmail);
         setLoginSuccess(true);
         reward(cookieGoogleId, cookieIdToken);
       }
