@@ -13,8 +13,11 @@ function Top(props) {
   const [imgData, setImgData] = useState(img);
 
   return (
-    <div>
-      <img className="topPage" src={imgData} />
+    <div className="test">
+      <h3>今日の良いことを投稿しよう</h3>
+      <div className="test">
+        <img className="topPage" src={imgData} />
+      </div>
     </div>
   );
 }
