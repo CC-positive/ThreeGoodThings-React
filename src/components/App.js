@@ -26,6 +26,7 @@ function App({ classes }) {
     "googleId",
     "userName",
     "imgUrl",
+    "email",
   ]);
   const [recommend, setRecommend] = useState(false);
   const [currentView, setCurrentView] = useState("home");
