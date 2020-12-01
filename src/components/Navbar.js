@@ -18,14 +18,14 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginLeft: "auto",
     marginRight: "auto",
-    height: 40,
+    height: 50,
   },
   logout: {
     marginLeft: "auto",
   },
   navber: {
     backgroundColor: "white",
-    opacity: 0.7,
+    opacity: 0.8,
     marginBottom: "20px",
   },
 }));
@@ -101,7 +101,7 @@ function Navbar(props) {
   return (
     <AppBar position="sticky" className={classes.navber}>
       <Grid container>
-        <Grid item xs={2} className={classes.image}>
+        <Grid item xs={4} className={classes.image}>
           <img
             src={imgData}
             alt="ローディング中"
@@ -110,11 +110,7 @@ function Navbar(props) {
             onClick={goHomePage}
           ></img>
         </Grid>
-        {props.loginSuccess ? (
-          <Grid item xs={2}></Grid>
-        ) : (
-          <Grid item xs={8}></Grid>
-        )}
+        {props.loginSuccess ? <Grid item xs></Grid> : <Grid item xs={4}></Grid>}
         {props.loginSuccess ? (
           <Grid item className={classes.logout} xs={8}>
             <Grid container>
@@ -152,7 +148,7 @@ function Navbar(props) {
             </Grid>
           </Grid>
         ) : (
-          <Grid item xs={2} className={classes.login}>
+          <Grid item xs={4} className={classes.login}>
             <GoogleLogin
               clientId={CLIENT_ID}
               render={(renderProps) => (
@@ -162,7 +158,7 @@ function Navbar(props) {
                   // variant="contained"
                   variant="outlined"
                   // color="primary"
-                  size="large"
+                  size="small"
                   className={classes.button}
                   startIcon={<PersonPinIcon />}
                 >
