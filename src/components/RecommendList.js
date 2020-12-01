@@ -16,6 +16,8 @@ import { blue } from "@material-ui/core/colors";
 import TGTRecommend from "./TGTRecommend";
 import { config } from "../config";
 
+import "../styles/RecommendList.css";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -74,6 +76,7 @@ function RecommendList(props) {
   const classes = useStyles();
   return (
     <>
+      <p className="recommend">他の人の投稿にいいねしよう</p>
       {recommendList.length !== 0 ? (
         <div className={classes.root}>
           <Card className={classes.root} elevation={3}>
