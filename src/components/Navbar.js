@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     marginLeft: "auto",
     marginRight: "auto",
-    height: 60,
+    height: 40,
   },
   logout: {
     marginLeft: "auto",
@@ -111,16 +111,16 @@ function Navbar(props) {
           ></img>
         </Grid>
         {props.loginSuccess ? (
-          <Grid item xs={6}></Grid>
+          <Grid item xs={2}></Grid>
         ) : (
           <Grid item xs={8}></Grid>
         )}
         {props.loginSuccess ? (
-          <Grid item className={classes.logout} xs={4}>
+          <Grid item className={classes.logout} xs={8}>
             <Grid container>
               <Grid item xs={6}>
                 <Button
-                  size="large"
+                  size="small"
                   className={classes.button}
                   startIcon={<PersonPinIcon />}
                   onClick={goMyPage}
@@ -138,7 +138,7 @@ function Navbar(props) {
                       // variant="contained"
                       variant="outlined"
                       // color="primary"
-                      size="large"
+                      size="small"
                       className={classes.button}
                       startIcon={<ExitToAppIcon />}
                     >

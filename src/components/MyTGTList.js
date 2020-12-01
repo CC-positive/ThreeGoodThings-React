@@ -5,14 +5,7 @@ import moment from "moment";
 import "moment/locale/ja";
 import testData from "../util/testTGTList.json";
 import Grid from "@material-ui/core/Grid";
-import {
-  List,
-  Avatar,
-  Divider,
-  Card,
-  CardHeader,
-  CardContent,
-} from "@material-ui/core";
+
 import { blue } from "@material-ui/core/colors";
 import MyTGT from "./MyTGT";
 import { config } from "../config";
@@ -65,28 +58,6 @@ function MyTGTList(props) {
     }
   };
 
-  /*const pushMyTGTList = async () => {
-      for (let key in myTGTData) {
-        await myTGTList.push(
-            <>
-            <Divider variant="inset" component="li" />
-                <MyTGT
-                  goodThingText={myTGTData[key].tgtText}
-                  tgtId={myTGTData[key].tgtId}
-                  tokenId={props.tokenId}
-                  googleId={props.googleId}
-                />
-                </>
-        );
-      }
- 
-
-  }*/
-
-  /* function updateName(name) {
-    setName(name);
-  }*/
-
   useEffect(() => {
     getMyTGTList();
     //pushMyTGTList();
@@ -120,7 +91,7 @@ function MyTGTList(props) {
                       goodThingText={myTGTData[idx].tgts.text1}
                       tgtId={myTGTData[idx].id}
                       tgt={myTGTData[idx].tgts}
-                      tokenId={props.tokenId}
+                      tokenId={props.idToken}
                       googleId={props.googleId}
                       setName={props.setName}
                       setCurrentLikeView={props.setCurrentLikeView}

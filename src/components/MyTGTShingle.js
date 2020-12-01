@@ -25,6 +25,9 @@ function MyTGTShingle(props) {
         margin: theme.spacing(1),
       },
     },
+    listItemText: {
+      fontSize: "1px",
+    },
   }));
 
   useEffect(() => {
@@ -95,6 +98,7 @@ function MyTGTShingle(props) {
                       ? { color: blue[500] }
                       : { color: blue[100] }
                   }
+                  size="small"
                 />
                 <Typography
                   className="likeCap"
@@ -110,16 +114,22 @@ function MyTGTShingle(props) {
                 </Typography>
               </div>
             </ListItemAvatar>
-            <ListItemText primary={props.goodThingText} />
+            <ListItemText
+              className={classes.listItemText}
+              primary={props.goodThingText}
+            />
+          </ListItem>
+          <p>
             <Button
+              size="small"
               variant="contained"
               className="detailLikedUser"
               onClick={handleToggleButtonClick}
               disabled={likedUsers[0].length === 0}
             >
-              ユーザーを表示
+              いいねを表示
             </Button>
-          </ListItem>
+          </p>
         </div>
       ) : (
         <>
