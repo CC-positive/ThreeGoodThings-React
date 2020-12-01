@@ -21,6 +21,7 @@ import ThumbUpAltRoundedIcon from "@material-ui/icons/ThumbUpAltRounded";
 import SendIcon from "@material-ui/icons/Send";
 import "../styles/TGTInput.css";
 
+const templateList = require("../template");
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -63,30 +64,10 @@ function TGTInput(props) {
   const [tmp3, setTmp3] = useState("");
 
   const getTmp = () => {
-    const tmpList = [];
-    tmpList.push(
-      "いいことあった?",
-      "何食べた?",
-      "よく寝れた?",
-      "何に飲んだ?",
-      "昨晩なんのテレビ見た?",
-      "音楽聞いた?",
-      "どこ行った?",
-      "寒い?、暖かい?",
-      "今日達成したことは？",
-      "天気はどう？",
-      "週末の予定は決まった？",
-      "目覚めはどう？",
-      "プロジェクト上手くいってる？",
-      "体調はどう？",
-      "最近何か買った？",
-      "ニュース見た？",
-      "運動した？",
-      "趣味は？"
-    );
+    const tmpList = templateList;
 
     const min = 1;
-    const max = 17;
+    const max = templateList.length - 1;
 
     const key1 = Math.floor(Math.random() * (max + 1 - min)) + min;
     const key2 = Math.floor(Math.random() * (max + 1 - min)) + min;
