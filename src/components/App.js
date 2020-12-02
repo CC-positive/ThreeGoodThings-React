@@ -98,7 +98,7 @@ function App({ classes }) {
       }
     };
     checkLogin();
-  }, []);
+  });
 
   return (
     <div className="App">
